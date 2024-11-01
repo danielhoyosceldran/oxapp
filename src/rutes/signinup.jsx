@@ -12,7 +12,7 @@ export default function Sign() {
 
     const auth = useAuth()
 
-    return auth ? <Navigate to="/oxat" /> : (
+    return auth.isAuthenticated ? <Navigate to="/xat" /> : (
         <>
             <form action="">
                 <h1>Sign in</h1>
