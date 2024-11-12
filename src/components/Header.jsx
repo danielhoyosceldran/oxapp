@@ -1,7 +1,7 @@
 import { DefaultHeather } from "./DefaultHeader";
 
 export function Header() {
-    return(
+    return (
         <DefaultHeather />
     );
 }

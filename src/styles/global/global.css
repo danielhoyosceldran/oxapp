@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+
 :root {
     --base-color: #fff;
     --base-variant: #f5f5f5;
@@ -25,11 +27,14 @@ body {
     background-color: var(--base-color);
     color: var(--text-color);
     accent-color: var(--accent-color);
+
+    font-family: 'Inter';
 }
 
 ul,
 li,
 button,
+input,
 a {
     all: unset;
 }
@@ -38,4 +43,22 @@ a {
 button,
 a {
     cursor: pointer;
+}
+
+.mainButton, .secondaryButton {
+    width: 80px;
+    text-align: center;
+
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.mainButton {
+    background-color: var(--accent-color);
+    color: #000;
+}
+
+.secondaryButton {
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
 }
