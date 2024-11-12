@@ -2,7 +2,9 @@ import { useContext, createContext, useState } from "react";
 
 const AuthContext = createContext({
     isAuthenticated: false,
+    setIsAuthenticated: () => {},
 });
+
 
 export function AuthProvider({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
