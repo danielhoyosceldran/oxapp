@@ -6,10 +6,10 @@ export function DefaultHeather() {
     <div className='mp-defaultHeader'>
       <ul>
           <div>
-            <li className='signin_button pointer'><Link to="/sign-in-up">sign in</Link></li>
+            <li className='signin_button pointer mainButton'><Link to="/sign-in-up">Sign In</Link></li>
           </div>
           <div>
-            <li className='signup_button pointer'><Link to="/sign-in-up">sign up</Link></li>
+            <li className='signup_button pointer secondaryButton'><Link to="/sign-in-up">Sign Up</Link></li>
           </div>
       </ul>
     </div>
