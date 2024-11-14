@@ -29,7 +29,8 @@ export default function Sign() {
 
     function triggerError(id, message) {
         var errorBanner = document.getElementById(id);
-        errorBanner.classList.toggle("invisible");
+        if (errorBanner.classList.contains("invisible"))
+            errorBanner.classList.remove("invisible");
         errorBanner.innerText = message;
     }
 
