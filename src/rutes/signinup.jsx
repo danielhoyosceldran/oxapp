@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthProvider";
 import "../styles/signPage/signStyles.css";
 import { BasicHeader } from "../components/BasicHeader";
+import { API_URL } from "../consts/consts";
 
 export default function Sign() {
     const [name_su, setName] = useState("");
@@ -13,7 +14,7 @@ export default function Sign() {
     const [password_si, setPassword_si] = useState("");
 
     const navigate = useNavigate();
-    const { isAuthenticated, setIsAuthenticated } = useAuth();
+    const auth = useAuth();
     
     const nameId = useId();
     const usernameSignInId = useId();
@@ -22,7 +23,7 @@ export default function Sign() {
     const passwordSignUpId = useId();
 
     function acceptSign() {
-        setIsAuthenticated(true);
+        auth.saveUser();
         navigate('/oxat');
     }
 
@@ -33,7 +34,7 @@ export default function Sign() {
         const data = { name: name_su, username: username_su, password: password_su };
 
         try {
-            const response = await fetch("http://localhost:8081/users/signup_user", {
+            const response = await fetch(API_URL + "/users/signup_user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
@@ -57,7 +58,7 @@ export default function Sign() {
         const data = { username: username_si, password: password_si };
 
         try {
-            const response = await fetch("http://localhost:8081/users/signin_user", {
+            const response = await fetch(API_URL + "/sign_users/signin_user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
@@ -74,8 +75,8 @@ export default function Sign() {
         }
     }
 
-    return isAuthenticated ? (
-        <Navigate to="/xat" />
+    return auth.isAuthenticated ? (
+        <Navigate to="/oxat" />
     ) : (
         <>
             <BasicHeader />
