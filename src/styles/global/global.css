@@ -5,6 +5,9 @@
     --base-variant: #f5f5f5;
     --text-color: #000;
     --accent-color: #DF9BFF;
+
+    --error-color: #ff9b9b;
+    --error-foreground-color: #752727;
 }
 
 .darkMode {
@@ -61,4 +64,8 @@ a {
 .secondaryButton {
     border: 1px solid var(--accent-color);
     color: var(--accent-color);
+}
+
+.invisible {
+    display: none;
 }

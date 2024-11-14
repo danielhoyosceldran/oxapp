@@ -27,33 +27,39 @@ export default function Sign() {
         navigate('/oxat');
     }
 
+    function triggerError(id, message) {
+        var errorBanner = document.getElementById(id);
+        errorBanner.classList.toggle("invisible");
+        errorBanner.innerText = message;
+    }
+
     async function signUp(event) {
         event.preventDefault();
-        console.log("hello world");
 
         const data = { name: name_su, username: username_su, password: password_su };
 
         try {
-            const response = await fetch(API_URL + "/users/signup_user", {
+            const response = await fetch(API_URL + "/sign_users/signup_user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
 
+            const responseData = await response.json();
             if (response.ok) {
-                console.log("Usuari registrat correctament");
+                console.log(responseData["message"]);
                 acceptSign();
             } else {
-                console.log("Error en registrar l'usuari");
+                console.log(responseData["message"]);
+                triggerError("sign-errorLabel-signup", responseData["message"]);
             }
         } catch (error) {
-            console.error("Hi ha hagut un error:", error);
+            console.error("fetch error:", error);
         }
     }
 
     async function signIn(event) {
         event.preventDefault();
-        console.log("hello world");
 
         const data = { username: username_si, password: password_si };
 
@@ -64,14 +70,16 @@ export default function Sign() {
                 body: JSON.stringify(data)
             });
 
+            const responseData = await response.json();
             if (response.ok) {
-                console.log("Sessió iniciada correctament");
+                console.log(responseData["message"]);
                 acceptSign();
             } else {
-                console.log("Usuari o contrasenya incorrectes");
+                console.log(responseData["message"]);
+                triggerError("sign-errorLabel-signin", responseData["message"]);
             }
         } catch (error) {
-            console.error("Hi ha hagut un error:", error);
+            console.error("fetch error:", error);
         }
     }
 
@@ -84,6 +92,7 @@ export default function Sign() {
                 <div className="signBox">
                     <form onSubmit={signIn} className="signForm">
                         <h1>Sign in</h1>
+                        <div className="sign-errorLabel invisible" id="sign-errorLabel-signin"></div>
                         <label htmlFor={usernameSignInId}>Username</label>
                         <input type="text" autoComplete="off" name="username_signin" value={username_si} onChange={(e) => setUserame_si(e.target.value)} id={usernameSignInId} />
 
@@ -95,6 +104,8 @@ export default function Sign() {
                     <div className="signDivider"></div>
                     <form onSubmit={signUp} className="signForm">
                         <h1>Sign up</h1>
+
+                        <div className="sign-errorLabel invisible" id="sign-errorLabel-signup"></div>
                         <label htmlFor={nameId}>Name</label>
                         <input type="text" autoComplete="off" name="name_signup" value={name_su} onChange={(e) => setName(e.target.value)} id={nameId} />
 
