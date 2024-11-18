@@ -43,7 +43,8 @@ export default function Sign() {
             const response = await fetch(API_URL + "/sign_users/signup_user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                credentials: "include"
             });
 
             const responseData = await response.json();
@@ -68,7 +69,8 @@ export default function Sign() {
             const response = await fetch(API_URL + "/sign_users/signin_user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                credentials: "include"
             });
 
             const responseData = await response.json();

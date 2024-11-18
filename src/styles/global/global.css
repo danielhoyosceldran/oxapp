@@ -5,6 +5,8 @@
     --base-variant: #f5f5f5;
     --text-color: #000;
     --accent-color: #DF9BFF;
+    --transpacency-color: rgba(0, 0, 0, .1);
+    --transparency-color-variant: rgba(0, 0, 0, .6);
 
     --error-color: #ff9b9b;
     --error-foreground-color: #752727;
@@ -12,9 +14,11 @@
 
 .darkMode {
     --base-color: #000;
-    --base-variant: #191919;
+    --base-variant: #101011;
     --text-color: #fff;
     --accent-color: #DF9BFF;
+    --transpacency-color: rgba(255, 255, 255, .1);
+    --transparency-color-variant: rgba(255, 255, 255, .3);
 }
 
 *,
@@ -24,20 +28,22 @@
     margin: 0;
 
     box-sizing: border-box;
+
+    font-family: 'Inter';
+    font-weight: 300;
 }
 
 body {
     background-color: var(--base-color);
     color: var(--text-color);
     accent-color: var(--accent-color);
-
-    font-family: 'Inter';
 }
 
 ul,
 li,
 button,
 input,
+textarea,
 a {
     all: unset;
 }

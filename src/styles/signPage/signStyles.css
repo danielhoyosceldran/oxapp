@@ -21,16 +21,16 @@
     & input {
         margin: 4px 0 4px 0;
 
-        background-color: rgba(255, 255, 255, .1);
+        background-color: var(--transpacency-color);
         padding: 4px;
 
-        border-bottom: 1px solid rgba(255, 255, 255, .3);
+        border-bottom: 1px solid var(--transparency-color-variant);
 
         transition: all .4s ease-in-out;
     }
 
     & input:focus {
-        border-bottom: 1px solid rgba(255, 255, 255, 1);
+        border-bottom: 1px solid var(--text-color);
     }
 
     & h1 {

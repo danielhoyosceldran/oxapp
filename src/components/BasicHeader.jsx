@@ -1,5 +1,5 @@
 import "../styles/cp/basicHeader.css";
-import dark_logo from "../imgs/logo/dark_logo.png";
+import dark_logo from "../imgs/logo/transparent_logo.png";
 import { Link } from "react-router-dom";
 
 export function BasicHeader() {

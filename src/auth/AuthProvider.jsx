@@ -1,4 +1,5 @@
 import { useContext, createContext, useState } from "react";
+import { API_URL, LOGGED_IN } from "../consts/consts";
 
 const AuthContext = createContext({
     isAuthenticated: false,
@@ -7,7 +8,7 @@ const AuthContext = createContext({
 
 
 export function AuthProvider({children}) {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(LOGGED_IN);
 
     function saveUser() {
         setIsAuthenticated(true);

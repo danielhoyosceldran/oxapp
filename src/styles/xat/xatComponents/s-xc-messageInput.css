@@ -1,0 +1,25 @@
+.xc-messageInputContiainer {
+    position: absolute;
+    bottom: 0;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 40px 40px 0;
+}
+
+.xc-messageInput {
+    background-color: var(--base-variant);
+
+    caret-color: var(--accent-color);
+    overflow-y: auto; /* Mostra barra de desplaçament quan s'assoleix l'alçada màxima */
+
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none; /* Desactiva redimensionament manual */
+
+    border-radius: 15px;
+
+    color: var(--text-color);
+    max-height: 400px; /* L'alçada màxima és de 400px */
+}
