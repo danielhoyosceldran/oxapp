@@ -10,8 +10,13 @@ const AuthContext = createContext({
 export function AuthProvider({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(LOGGED_IN);
 
-    function saveUser() {
-        setIsAuthenticated(true);
+    async function saveUser() {
+        const response = await fetch(API_URL + "/", {
+            method: "GET",
+            credentials: "include"
+        });
+        const responseData = await response.json();
+        setIsAuthenticated(responseData["status"]);
     }
 
     return (

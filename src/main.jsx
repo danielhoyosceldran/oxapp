@@ -18,16 +18,17 @@ const router = createBrowserRouter([
     path: "/sign-in-up",
     element: <Sign />
   },
-  {
-    path: "/",
-    element: <Protected />,
-    children: [
-      {
-        path: "/oxat",
-        element: <Xat />
-      },
-    ]
-  },
+  // En principi ja no cal això
+  // {
+  //   path: "/",
+  //   element: <Protected />,
+  //   children: [
+  //     {
+  //       path: "/oxat",
+  //       element: <Xat />
+  //     },
+  //   ]
+  // },
 ]);
 
 createRoot(document.getElementById('root')).render(

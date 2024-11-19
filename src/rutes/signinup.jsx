@@ -24,7 +24,7 @@ export default function Sign() {
 
     function acceptSign() {
         auth.saveUser();
-        navigate('/oxat');
+        navigate('/');
     }
 
     function triggerError(id, message) {
@@ -40,7 +40,7 @@ export default function Sign() {
         const data = { name: name_su, username: username_su, password: password_su };
 
         try {
-            const response = await fetch(API_URL + "/sign_users/signup_user", {
+            const response = await fetch(API_URL + "/sign_users/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -66,7 +66,7 @@ export default function Sign() {
         const data = { username: username_si, password: password_si };
 
         try {
-            const response = await fetch(API_URL + "/sign_users/signin_user", {
+            const response = await fetch(API_URL + "/sign_users/signin", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
@@ -87,7 +87,7 @@ export default function Sign() {
     }
 
     return auth.isAuthenticated ? (
-        <Navigate to="/oxat" />
+        <Navigate to="/" />
     ) : (
         <>
             <BasicHeader />
