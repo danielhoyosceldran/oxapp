@@ -1,4 +1,4 @@
-.x-xatPageContainer {
+.x-body {
     height: 100vh;
     width: 100vw;
 
@@ -7,7 +7,32 @@
     overflow: hidden;
 }
 
-.x-xatContainer {
+.x-menu-container {
+    background-color: transparent;
+    
+    height: 100%;
+    width: 20vw;
+    min-width: 400px;
+    
+    padding: 40px;
+}
+
+.x-menu {
+    background-color: var(--base-variant);
+    height: 100%;
+    width: 100%;
+
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    & h1 {
+        font-weight: 400;
+    }
+}
+
+.x-chatContainer {
     position: relative;
 
     background-color: transparent;
@@ -17,20 +42,32 @@
     min-width: 80vw;
 }
 
-.x-contactsBoxContainer {
-    background-color: transparent;
-
-    height: 100%;
-    width: 20vw;
-    min-width: 400px;
-
-    padding: 40px;
+.x-menu-contacts-container {
+    flex-grow: 1;
 }
 
-.x-inner-contactsBoxContainer {
-    background-color: var(--base-variant);
-    height: 100%;
-    width: 100%;
+.x-menu-footer {
+    margin: 15px 30px;
+}
 
-    border-radius: 18px;
+.x-menu-footer-profile {
+    gap: 5px;
+    
+    & img{
+        height: 30px;
+        width: 30px;
+    }
+}
+
+.x-menu-footer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    & img{
+        height: 20px;
+        width: 20px;
+    }
 }

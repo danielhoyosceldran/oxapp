@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 
-import "../styles/components/s-logoHeader.css";
 
 export function BasicHeader() {
   return (

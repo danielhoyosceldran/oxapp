@@ -1,25 +1,55 @@
-.xc-messageInputContiainer {
+.xc-messageInput-contiainer {
     position: absolute;
     bottom: 0;
     background-color: transparent;
     width: 100%;
     box-sizing: border-box;
     padding: 0 40px 40px 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .xc-messageInput {
     background-color: var(--base-variant);
 
     caret-color: var(--accent-color);
-    overflow-y: auto; /* Mostra barra de desplaçament quan s'assoleix l'alçada màxima */
-
+    
     padding: 15px;
-    width: 100%;
+    
+    width: 600px;
+    max-height: 400px;
+    
+    scrollbar-width: thin;
+    scrollbar-color: var(--transparency-color) transparent;
+    resize: none;
     box-sizing: border-box;
-    resize: none; /* Desactiva redimensionament manual */
-
+    overflow-y: auto;
+    overflow-x: hidden;
+    
     border-radius: 15px;
 
     color: var(--text-color);
-    max-height: 400px; /* L'alçada màxima és de 400px */
 }
+
+.xc-sendButton {
+    background-color: var(--base-variant);
+    
+    height: 50px;
+    width: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    transition: all .2s;
+
+    &:hover {
+        background-color: var(--base-variant2);
+    }
+}
+
+
