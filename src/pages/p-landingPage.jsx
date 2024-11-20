@@ -7,7 +7,7 @@ export default function LandingPage() {
         <>
             <div className='lp-body'>
                 <header className='lp-header'>
-                    <div className='pointer mainButton lp-header-element'>
+                    <div className='g-pointer mainButton lp-header-element'>
                         <Link to="/access">access</Link>
                     </div>
                 </header>

@@ -10,13 +10,6 @@ import oxapp_logo from "../assets/logo/transparent_logo.png";
 import "../styles/access/s-access.css";
 
 export default function Sign() {
-    // const [name_su, setName] = useState("");
-    // const [username_su, setUserame_su] = useState("");
-    // const [password_su, setPassword_su] = useState("");
-
-    // const [username_si, setUserame_si] = useState("");
-    // const [password_si, setPassword_si] = useState("");
-
     const [name, setName] = useState("");
     const [username, setUserame] = useState("");
     const [password, setPassword] = useState("");
@@ -24,7 +17,6 @@ export default function Sign() {
     const navigate = useNavigate();
     const auth = useAuth();
     
-
     const ids = {
         name: useId(),
         username: useId(),
@@ -34,6 +26,19 @@ export default function Sign() {
     function acceptSign() {
         auth.saveUser();
         navigate('/');
+    }
+
+    const AccessActions = {
+        signIn: "signIn",
+        signUp: "signUp"
+    }
+
+    const [accessAction, setAccessAction] = useState(AccessActions.signIn);
+
+    function toggleForm() {
+        setAccessAction(accessAction === AccessActions.signIn
+            ? AccessActions.signUp
+            : AccessActions.signIn);
     }
 
     function triggerError(id, message) {
@@ -75,19 +80,6 @@ export default function Sign() {
         } catch (error) {
             console.error("fetch error:", error);
         }
-    }
-
-    const AccessActions = {
-        signIn: "signIn",
-        signUp: "signUp"
-    }
-
-    const [accessAction, setAccessAction] = useState(AccessActions.signIn);
-
-    function toggleForm() {
-        setAccessAction(accessAction === AccessActions.signIn
-            ? AccessActions.signUp
-            : AccessActions.signIn);
     }
 
     function getForm() {
@@ -133,17 +125,25 @@ export default function Sign() {
                     autoComplete="off"
                     name={"password"}
                     value={password}
-                    onChange={(e) => setPassword(e.target.event)}
+                    onChange={(e) => setPassword(e.target.value)}
                     id={ids.password}
                 />
     
-                <button type="submit" className={"mainButton"}>
-                    {accessAction === AccessActions.signIn ? "Sign in" : "Sign up"}
-                </button>
+                <div className="a-accessOptions-container">
+                    <p onClick={toggleForm} className="g-pointer">
+                        {
+                            accessAction === AccessActions.signIn
+                                ? "Create new account"
+                                : "Do you already have an account?"
+                        }
+                    </p>
+                    <button type="submit" className={"mainButton"}>
+                        {accessAction === AccessActions.signIn ? "Sign in" : "Sign up"}
+                    </button>
+                </div>
             </form>
         );
     }
-    
 
     return auth.isAuthenticated ? <Navigate to="/" />
     : (
