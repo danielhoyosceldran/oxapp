@@ -1,7 +1,8 @@
-import XcMessageInput from "../components/xatComponents/xc-messageInput";
-import "../styles/xat/s-xat.css";
+import XcMessageInput from "../components/chatComponents/xc-messageInput";
 
-export default function Xat() {
+import "../styles/chat/s-chat.css";
+
+export default function Chat() {
     return (
         <div className="x-xatPageContainer" id="x-xatPageContainer-id">
             <div className="x-contactsBoxContainer" id="x-contactsBoxContainer-id">

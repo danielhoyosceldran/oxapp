@@ -6,5 +6,5 @@ const response = await fetch(API_URL + "/", {
     credentials: "include"
 });
 const responseData = await response.json();
-console.log(responseData);
+
 export const LOGGED_IN = responseData["status"];

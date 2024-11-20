@@ -1,5 +1,6 @@
-import "../../styles/xat/xatComponents/s-xc-messageInput.css";
 import { useRef, useEffect } from "react";
+
+import "../../styles/chat/chatComponents/s-xc-messageInput.css";
 
 export default function XcMessageInput() {
     const textareaRef = useRef(null);

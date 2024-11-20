@@ -1,5 +1,5 @@
 import { useContext, createContext, useState } from "react";
-import { API_URL, LOGGED_IN } from "../consts/consts";
+import { API_URL, LOGGED_IN } from "../utils/consts";
 
 const AuthContext = createContext({
     isAuthenticated: false,

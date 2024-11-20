@@ -1,34 +1,22 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import './styles/global/global.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Sign from './rutes/signinup.jsx'
-import Xat from './rutes/xat.jsx'
-import Protected from './rutes/protected.jsx'
 import { AuthProvider } from './auth/AuthProvider.jsx'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+import Oxapp from './Oxapp.jsx'
+import Sign from './pages/p-access.jsx'
+
+import './styles/global/s-global.css'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <Oxapp />
   },
   {
-    path: "/sign-in-up",
+    path: "/access",
     element: <Sign />
   },
-  // En principi ja no cal això
-  // {
-  //   path: "/",
-  //   element: <Protected />,
-  //   children: [
-  //     {
-  //       path: "/oxat",
-  //       element: <Xat />
-  //     },
-  //   ]
-  // },
 ]);
 
 createRoot(document.getElementById('root')).render(
