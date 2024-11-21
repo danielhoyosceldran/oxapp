@@ -1,0 +1,19 @@
+.x-menu-footer {
+}
+
+.x-menu-footer-profile {
+    gap: 5px;
+    
+    & img{
+        height: 30px;
+        width: 30px;
+    }
+}
+
+.x-menu-footer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}

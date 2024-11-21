@@ -12,7 +12,7 @@
 }
 
 .xc-messageInput {
-    background-color: var(--base-variant);
+    background-color: var(--base-variant-0);
 
     caret-color: var(--accent-color);
     
@@ -34,7 +34,7 @@
 }
 
 .xc-sendButton {
-    background-color: var(--base-variant);
+    background-color: var(--base-variant-0);
     
     height: 50px;
     width: 50px;
@@ -47,8 +47,13 @@
 
     transition: all .2s;
 
-    &:hover {
-        background-color: var(--base-variant2);
+    & img {
+        transition: all .2s;
+    }
+
+    &:hover img {
+
+        transform: scale(1.4);
     }
 }
 

@@ -1,0 +1,15 @@
+.x-menu-header-hideMenu {
+    /* Per a alinear les icones del header */
+    position: relative;
+
+    & img {
+        position: absolute;
+        right: -6px;
+    }
+}
+
+.x-menu-header-searchBar {
+    background-color: var(--base-variant-1);
+    padding: 6px;
+    border-radius: 8px;
+}

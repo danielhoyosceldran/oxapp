@@ -18,7 +18,7 @@
 }
 
 .x-menu {
-    background-color: var(--base-variant);
+    background-color: var(--base-variant-0);
     height: 100%;
     width: 100%;
 
@@ -26,6 +26,8 @@
 
     display: flex;
     flex-direction: column;
+
+    padding: 25px;
 
     & h1 {
         font-weight: 400;
@@ -40,34 +42,4 @@
     height: 100%;
     max-width: 100vw;
     min-width: 80vw;
-}
-
-.x-menu-contacts-container {
-    flex-grow: 1;
-}
-
-.x-menu-footer {
-    margin: 15px 30px;
-}
-
-.x-menu-footer-profile {
-    gap: 5px;
-    
-    & img{
-        height: 30px;
-        width: 30px;
-    }
-}
-
-.x-menu-footer-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-
-    & img{
-        height: 20px;
-        width: 20px;
-    }
 }
