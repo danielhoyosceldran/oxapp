@@ -1,10 +1,8 @@
 import { useRef, useEffect, useId } from "react";
 
-import Send from "../../assets/icons/lightMode_send_icon.svg";
-
 import "../../styles/chat/chatComponents/s-xc-messageInput.css";
 
-export default function XcMessageInput() {
+export default function XcMessageInput({sendIcon}) {
     const textareaRef = useRef(null);
     const xc_messageInput_id = useId();
 
@@ -41,7 +39,7 @@ export default function XcMessageInput() {
                 rows="1"
             ></textarea>
             <button className="g-pointer xc-sendButton">
-                <img src={Send} alt="Send icon" />
+                <img src={sendIcon} alt="Send icon" />
             </button>
         </div>
     );
