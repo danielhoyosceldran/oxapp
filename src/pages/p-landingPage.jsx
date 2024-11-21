@@ -18,7 +18,7 @@ export default function LandingPage() {
                 </aside>
                 <div className='lp-content-container'>
                     <div className='lp-content-title'>
-                        <div className='g-flex g-horizonal-center-flex g-vertical-center-flex'>
+                        <div className='g-flex g-horizonal-center-flex g-vertical-center-flex g-flex-gap20'>
                             <img src={Logo} alt="" />
                             <h1>OXAPP</h1>
                         </div>
