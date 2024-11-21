@@ -53,6 +53,7 @@ body {
     background-color: var(--base-color);
     color: var(--text-color);
     accent-color: var(--accent-color);
+    caret-color: var(--accent-color);
 }
 
 ::selection {
@@ -119,6 +120,15 @@ a {
 .g-icon {
     height: 20px;
     width: 20px;
+}
+
+.g-icon-animation {
+    transition: transform .2s;
+}
+
+.g-icon-animation:hover {
+
+    transform: scale(1.2);
 }
 
 .g-big-icon {

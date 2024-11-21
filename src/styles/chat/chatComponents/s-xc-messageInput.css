@@ -13,8 +13,6 @@
 
 .xc-messageInput {
     background-color: var(--base-variant-0);
-
-    caret-color: var(--accent-color);
     
     padding: 15px;
     

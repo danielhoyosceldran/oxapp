@@ -39,7 +39,7 @@ export default function XcMessageInput({sendIcon}) {
                 rows="1"
             ></textarea>
             <button className="g-pointer xc-sendButton">
-                <img src={sendIcon} alt="Send icon" />
+                <img src={sendIcon} alt="Send" />
             </button>
         </div>
     );

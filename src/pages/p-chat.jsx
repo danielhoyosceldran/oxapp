@@ -11,6 +11,7 @@ import Back_lm from "../assets/icons/back-lm.svg";
 import Back_dm from "../assets/icons/back-dm.svg";
 import Send_lm from "../assets/icons/send_lm.svg";
 import Send_dm from "../assets/icons/send_dm.svg";
+import default_profile_photo from "../assets/profile_photos/default.png";
 
 import { changeTheme, isDarkThemeOn } from "../utils/theme.js"
 
@@ -24,6 +25,8 @@ export default function Chat() {
     async function handleLogout(){
 
     }
+
+    const profile_photo = default_profile_photo;
 
     const icons_lm = {
         theme: Moon,
@@ -57,13 +60,13 @@ export default function Chat() {
                             <h1>Contacts</h1>
                             {/* By the moment: unabeled */}
                             <button className="x-menu-header-hideMenu g-flex g-horizonal-center-flex g-vertical-center-flex">
-                                <img src={themeIcons.back} alt="" className="g-big-icon g-pointer"/>
+                                <img src={themeIcons.back} alt="" className="g-big-icon g-pointer g-icon-animation"/>
                             </button>
                         </div>
                         <div className="x-menu-header-secondRow g-flex g-horizontal-spbtw-flex g-vertical-center-flex">
                             <input type="text" className="x-menu-header-searchBar"/>
                             <button className="x-menu-header-addContact g-flex g-horizonal-center-flex g-vertical-center-flex">
-                                <img src={themeIcons.plus} alt="" className="g-icon g-pointer" />
+                                <img src={themeIcons.plus} alt="" className="g-icon g-pointer g-icon-animation" />
                             </button>
                         </div>
                     </header>
@@ -73,17 +76,17 @@ export default function Chat() {
                     </div>
                     <footer className="x-menu-footer g-flex g-horizontal-spbtw-flex">
                         <div className="x-menu-footer-profile g-flex g-vertical-center-flex g-horizontal-center-flex">
-                            <img src="" alt="" />
+                            <img src={profile_photo} alt="" />
                             <h3>username</h3>
                         </div>
 
                         {/* menu footer */}
                         <div className="x-menu-footer-actions -flex g-vertical-center-flex g-horizontal-center-flex">
                             <button className="g-pointer x-menu-footer-theme g-flex g-vertical-center-flex g-horizontal-center-flex" onClick={handleChangeTheme}>
-                                <img src={themeIcons.theme} alt="light dark mode" className="g-icon g-pointer" />
+                                <img src={themeIcons.theme} alt="light dark mode" className="g-icon g-pointer g-icon-animation" />
                             </button>
                             <button onClick={handleLogout} className="g-pointer x-menu-footer-logout g-flex g-vertical-center-flex g-horizontal-center-flex">
-                                <img src={themeIcons.exit} alt="light dark mode" className="g-icon g-pointer" />
+                                <img src={themeIcons.exit} alt="light dark mode" className="g-icon g-pointer g-icon-animation" />
                             </button>
                         </div>
                     </footer>
