@@ -3,22 +3,16 @@
     
     height: 100vh;
     width: 100vw;
+
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--base-variant-2) var(--base-variant-0);
+
+    background-color: var(--base-color);
 }
 
-.lp-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    padding: 20px;
-}
-
-.lp-header-element {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    justify-self: end;
+.lp-content-container {
+    width: calc(100vw - 720px);
+    height: 100vh;
 }
