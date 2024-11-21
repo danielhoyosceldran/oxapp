@@ -45,10 +45,8 @@
 
     border-radius: 15px;
 
-    transition: all .2s;
-
     & img {
-        transition: all .2s;
+        transition: transform .2s;
     }
 
     &:hover img {
