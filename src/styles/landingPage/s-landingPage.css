@@ -1,31 +1,36 @@
 .lp-body {
-    position: relative;
-    
     height: 100vh;
-    width: 100vw;
-
     overflow-x: hidden;
 
     scrollbar-width: thin;
     scrollbar-color: var(--base-variant-2) var(--base-variant-0);
 
-    background-color: var(--base-color);
+    scroll-behavior: smooth;
 }
 
 .lp-content-container {
-    width: calc(100vw - 720px);
-    height: 100vh;
+    position: relative;
+    flex-grow: 1;
 }
 
-.lp-content-title {
-    & img {
-        margin-top: 7px;
-        height: 90px;
-    }
+.lp-divider {
+    height: 2px;
+    width: 50%;
 
-    & h1 {
-        font-family: 'Oswald';
-        font-weight: 500;
-        font-size: 110px;
+    justify-self: center;
+
+    background-color: var(--base-variant-2);
+
+    position: relative;
+    
+    &::after {
+        content: "SCROLL";
+        color: var(--base-variant-neutral);
+
+        width: 100px;
+
+        position: absolute;
+        top: -35px;
+        left: calc(50% - 30px);
     }
 }

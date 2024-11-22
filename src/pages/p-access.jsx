@@ -3,7 +3,7 @@ import { useAuth } from "../auth/AuthProvider";
 import { useState, useId } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
-import { API_URL } from "../utils/consts";
+import { API_URL } from "../api_handlers/consts";
 
 import oxapp_logo from "../assets/logo/transparent_logo.png";
 

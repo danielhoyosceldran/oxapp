@@ -1,4 +1,4 @@
-import { API_URL } from "../utils/consts";
+import { API_URL } from "../api_handlers/consts";
 
 export function logout() {
     fetch(`${API_URL}/signout`, {

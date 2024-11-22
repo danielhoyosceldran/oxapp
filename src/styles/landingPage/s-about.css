@@ -1,0 +1,31 @@
+.lp-content-about {
+    height: 80vh;
+
+    text-align: center;
+
+    & h1 {
+        margin-top: 80px;
+        font-size: 60px;
+        font-weight: 600;
+    }
+
+    & p {
+        max-width: 750px;
+        margin: 0 50px;
+
+        line-height: 1.5;
+    }
+}
+
+.lp-content-about-links {
+    margin-top: 50px;
+    
+    & a {
+        color: var(--base-variant-neutral);
+    }
+}
+
+.lp-content-about-github {
+    height: 40px;
+    width: 40px;
+}

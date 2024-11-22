@@ -1,26 +1,9 @@
 .lp-aside {
     position: sticky;
     top: 0;
-    right: 0;
 
-    justify-self: end;
-
-    width: 720px;
     height: 100vh;
-
-    background-color: var(--base-variant-0);
-
-    padding: 20px;
-
-    & div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        justify-self: end;
-
-        transform: translate(0, -40px);
-    }
+    width: 650px;
 }
 
 .lp-aside-img {

@@ -1,0 +1,24 @@
+.lp-content-title {
+    height: 100vh;
+
+    & img {
+        margin-top: 7px;
+        height: 90px;
+    }
+    
+    & h1 {
+        font-family: 'Oswald';
+        font-weight: 500;
+        font-size: 110px;
+
+        color: var(--text-color);
+
+        transition: transform .2s;
+    }
+
+    & a {
+        &:hover h1 {
+            transform: scale(1.02);
+        }
+    }
+}
