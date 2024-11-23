@@ -41,9 +41,13 @@ export default function LandingPage() {
                     </div>
                 </aside>
             </div>
-            <footer className='lp-footer'>
+            {/* <footer className='lp-footer g-flex g-horizontal-center g-vertical-center-flex'>
+                <div className='lp-footer-content'>
+                    <section className='lp-footer-links'>
 
-            </footer>
+                    </section>
+                </div>
+            </footer> */}
         </div>
     );
 }

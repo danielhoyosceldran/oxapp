@@ -6,7 +6,6 @@ const AuthContext = createContext({
     setIsAuthenticated: () => {},
 });
 
-
 export function AuthProvider({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(LOGGED_IN);
 

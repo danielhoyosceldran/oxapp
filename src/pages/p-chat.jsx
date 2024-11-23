@@ -13,7 +13,7 @@ import Send_lm from "../assets/icons/send_lm.svg";
 import Send_dm from "../assets/icons/send_dm.svg";
 import default_profile_photo from "../assets/profile_photos/default.png";
 
-import { changeTheme, isDarkThemeOn } from "../utils/theme.js"
+import { changeTheme, isDarkThemeOn } from "../utils/theme.jsx"
 
 import "../styles/chat/s-chat.css";
 import "../styles/chat/s-chat-menu/s-header.css";
@@ -21,7 +21,6 @@ import "../styles/chat/s-chat-menu/s-contacts.css";
 import "../styles/chat/s-chat-menu/s-footer.css";
 
 export default function Chat() {
-
     async function handleLogout(){
 
     }
