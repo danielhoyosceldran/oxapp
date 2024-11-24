@@ -183,3 +183,8 @@ a {
         text-decoration: underline;
     }
 }
+
+.g-styled-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--base-variant-2) var(--base-variant-0);
+}

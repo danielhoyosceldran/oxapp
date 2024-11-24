@@ -1,0 +1,32 @@
+.xc-message-box {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.xc-message-sent {
+    justify-content: end;
+}
+
+.xc-message-recieved {
+
+}
+
+.xc-message {
+    background-color: var(--base-variant-1);
+    min-width: 200px;
+    min-height: 100px;
+    max-width: 350px;
+    max-height: 600px;
+    
+    padding: 15px;
+
+    border: 0 solid;
+    border-radius: 12px 5px 12px 12px;
+}
+
+.xc-message-user {
+    align-items: end;
+    & img {
+        height: 25px;
+    }
+}

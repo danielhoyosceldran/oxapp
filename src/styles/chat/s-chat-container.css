@@ -1,0 +1,28 @@
+.x-chatContainer {
+    background-color: transparent;
+    height: 100%;
+    
+    flex-grow: 1;
+    justify-content: end;
+}
+
+.x-chat-messages-container {
+    padding: 30px 300px;
+
+    flex-grow: 1;
+
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 1700px){
+    .x-chat-messages-container {
+        padding: 30px 100px;
+    }
+}
+
+@media screen and (max-width: 1300px){
+    .x-chat-messages-container {
+        padding: 30px;
+    }
+    
+}
