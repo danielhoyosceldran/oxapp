@@ -1,6 +1,8 @@
 import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import { useState, useEffect, useRef } from "react";
-
+import XcMessage from "../components/chatComponents/xc-message.jsx";
+import XcContact from "../components/chatComponents/xc-contact.jsx";
+import { UsersInformation } from "../utils/usersInformation.js";
 import Sun from "../assets/icons/sun.svg";
 import Moon from "../assets/icons/moon.svg";
 import Exit_lm from "../assets/icons/exit_lm.svg";
@@ -12,6 +14,7 @@ import Back_dm from "../assets/icons/back-dm.svg";
 import Send_lm from "../assets/icons/send_lm.svg";
 import Send_dm from "../assets/icons/send_dm.svg";
 import default_profile_photo from "../assets/profile_photos/default.png";
+import { logoutRequest } from "../api_handlers/session.js";
 
 import { changeTheme, isDarkThemeOn } from "../utils/theme.jsx";
 
@@ -20,10 +23,11 @@ import "../styles/chat/s-chat-menu/s-header.css";
 import "../styles/chat/s-chat-menu/s-contacts.css";
 import "../styles/chat/s-chat-menu/s-footer.css";
 import "../styles/chat/s-chat-container.css";
-import XcMessage from "../components/chatComponents/xc-message.jsx";
 
 export default function Chat() {
-  async function handleLogout() {}
+  async function handleLogout() {
+    await logoutRequest();
+  }
 
   const profile_photo = default_profile_photo;
 
@@ -84,7 +88,9 @@ export default function Chat() {
           </header>
           <div className="x-menu-contacts-container">
             {/* Temporal */}
-            {}
+            {["Miquel", "Joan", "Birres", "Montse"].map((msg, index) => (
+            <XcContact key={index}></XcContact>
+          ))}
           </div>
           <footer className="x-menu-footer g-flex g-horizontal-spbtw-flex">
             <div className="x-menu-footer-profile g-flex g-vertical-center-flex g-horizontal-center-flex">

@@ -1,4 +1,5 @@
 import { useContext, createContext, useState } from "react";
+import { accessRequest } from "../api_handlers/session";
 import { API_URL, LOGGED_IN } from "../api_handlers/consts";
 
 const AuthContext = createContext({
@@ -10,12 +11,7 @@ export function AuthProvider({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(LOGGED_IN);
 
     async function saveUser() {
-        const response = await fetch(API_URL + "/", {
-            method: "GET",
-            credentials: "include"
-        });
-        const responseData = await response.json();
-        setIsAuthenticated(responseData["status"]);
+        setIsAuthenticated(await accessRequest());
     }
 
     return (
