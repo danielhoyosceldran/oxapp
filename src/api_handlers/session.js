@@ -10,7 +10,7 @@ export async function logoutRequest() {
 }
 
 export async function accessRequest() {
-    const response = await fetch(API_URL + "/", {
+    const response = await fetch(API_URL + "/im_i_logged_in", {
         method: "GET",
         credentials: "include"
     });
