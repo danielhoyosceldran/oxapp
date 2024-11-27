@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthProvider";
-import { useState, useId } from "react";
+import { useState, useId, useRef, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import { API_URL } from "../api_handlers/consts";
@@ -98,6 +98,7 @@ export default function Sign() {
                         <label htmlFor={ids.name}>Name</label>
                         <input
                             type="text"
+                            autoFocus
                             autoComplete="off"
                             name="name"
                             value={name}
@@ -110,6 +111,7 @@ export default function Sign() {
                 <label htmlFor={ids.username}>Username</label>
                 <input
                     type="text"
+                    autoFocus
                     autoComplete="off"
                     name={"username"}
                     value={username}

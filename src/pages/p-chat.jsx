@@ -2,7 +2,6 @@ import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import { useState, useEffect, useRef } from "react";
 import XcMessage from "../components/chatComponents/xc-message.jsx";
 import XcContact from "../components/chatComponents/xc-contact.jsx";
-import { UsersInformation } from "../utils/usersInformation.js";
 import Sun from "../assets/icons/sun.svg";
 import Moon from "../assets/icons/moon.svg";
 import Exit_lm from "../assets/icons/exit_lm.svg";

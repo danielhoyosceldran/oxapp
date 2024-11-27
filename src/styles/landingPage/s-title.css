@@ -18,7 +18,7 @@
 
     & a {
         &:hover h1 {
-            transform: scale(1.02);
+            transform: scale(1.04);
         }
     }
 }
