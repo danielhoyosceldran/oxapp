@@ -70,13 +70,13 @@ export default function Chat() {
             <div className="x-menu-header-firstRow g-vertical-center-flex g-flex g-horizontal-spbtw-flex">
               <h1>Contacts</h1>
               {/* By the moment: unabeled */}
-              {/* <button className="x-menu-header-hideMenu g-flex g-horizonal-center-flex g-vertical-center-flex">
+              {/* <button className="x-menu-header-hideMenu g-flex g-horizontal-center-flex g-vertical-center-flex">
                                 <img src={themeIcons.back} alt="" className="g-big-icon g-pointer g-icon-animation"/>
                             </button> */}
             </div>
             <div className="x-menu-header-secondRow g-flex g-horizontal-spbtw-flex g-vertical-center-flex">
               <input type="text" className="x-menu-header-searchBar" />
-              <button className="x-menu-header-addContact g-flex g-horizonal-center-flex g-vertical-center-flex">
+              <button className="x-menu-header-addContact g-flex g-horizontal-center-flex g-vertical-center-flex">
                 <img
                   src={themeIcons.plus}
                   alt=""
