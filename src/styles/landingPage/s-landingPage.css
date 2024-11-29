@@ -17,7 +17,7 @@
     height: 2px;
     width: 50%;
 
-    justify-self: center;
+    transform: translate(50%, 0px);
 
     background-color: var(--base-variant-2);
 

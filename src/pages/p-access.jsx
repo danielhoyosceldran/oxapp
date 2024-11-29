@@ -60,7 +60,7 @@ export default function Sign() {
             data.name = name
 
         try {
-            const url = `${API_URL}/sign_users/${accessAction}`;
+            const url = `${API_URL}/access/${accessAction.toLowerCase()}`;
             console.log(url);
             const response = await fetch(url, {
                 method: "POST",

@@ -2,7 +2,7 @@ import { API_URL } from "../api_handlers/consts";
 
 export async function logoutRequest() {
     console.log("Hola")
-    const response = await fetch(`${API_URL}/signout`, {
+    const response = await fetch(`${API_URL}/access/signout`, {
         method: "PUT",
         credentials: "include"
     });
@@ -10,7 +10,7 @@ export async function logoutRequest() {
 }
 
 export async function accessRequest() {
-    const response = await fetch(API_URL + "/im_i_logged_in", {
+    const response = await fetch(API_URL + "/access", {
         method: "GET",
         credentials: "include"
     });
