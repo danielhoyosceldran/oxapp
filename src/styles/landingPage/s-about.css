@@ -16,16 +16,3 @@
         line-height: 1.5;
     }
 }
-
-.lp-content-about-links {
-    margin-top: 50px;
-    
-    & a {
-        color: var(--base-variant-neutral);
-    }
-}
-
-.lp-content-about-github {
-    height: 40px;
-    width: 40px;
-}

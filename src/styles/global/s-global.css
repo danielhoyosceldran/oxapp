@@ -154,6 +154,13 @@ a {
     gap: 10px;
 }
 
+.g-flex-gap12 {
+    gap: 12px;
+}
+
+.g-flex-gap18 {
+    gap: 18px;
+}
 
 .g-flex-gap20 {
     gap: 20px;

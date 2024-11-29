@@ -29,10 +29,6 @@ export default function LandingPage() {
                             <p>This web chat is part of a final degree project developed by <a href="https://danielhoyosceldran.vercel.app/" className='g-link-behaviour' target="_blank" rel="noopener noreferrer">Daniel Hoyos Celdrán</a> at the <a href="https://www.uab.cat/web/universitat-autonoma-de-barcelona-1345467950436.html" className='g-link-behaviour' target="_blank" rel="noopener noreferrer">Universitat Autònoma de Barcelona (UAB)</a>.</p>
                             <p>The application consists of two separate code repositories: one for the server (oxserver) and another for the client (oxapp).</p>
                         </div>
-                        <div className='lp-content-about-links g-flex g-flex-gap40'>
-                            <a href="https://github.com/danielhoyosceldran/oxserver" className='g-flex g-flex-col g-horizonal-center-flex g-vertical-center-flex g-flex-gap6' target="_blank" rel="noopener noreferrer"><img src={Github} alt="github logo" className='lp-github-oxserver lp-content-about-github g-icon-animation' />oxserver</a>
-                            <a href="https://github.com/danielhoyosceldran/oxapp" className='g-flex g-flex-col g-horizonal-center-flex g-vertical-center-flex g-flex-gap6' target="_blank" rel="noopener noreferrer"><img src={Github} alt="github logo" className='lp-github-oxapp lp-content-about-github g-icon-animation' />oxapp</a>
-                        </div>
                     </section>
                 </div>
                 <aside className='lp-aside g-flex g-horizonal-center-flex g-vertical-center-flex g-background-pattern'>
@@ -41,13 +37,17 @@ export default function LandingPage() {
                     </div>
                 </aside>
             </div>
-            {/* <footer className='lp-footer g-flex g-horizontal-center g-vertical-center-flex'>
-                <div className='lp-footer-content'>
+            <footer className=''>
                     <section className='lp-footer-links'>
+                        <div className='lp-footer-content-links g-flex g-flex-col g-flex-gap18'>
+                            <a href="https://github.com/danielhoyosceldran/oxserver" className='g-flex g-horizonal-center-flex g-vertical-center-flex g-flex-gap6 g-link-behaviour' target="_blank" rel="noopener noreferrer"><img src={Github} alt="github logo" className='lp-github-oxserver lp-footer-content-github' />oxserver</a>
+                            <a href="https://github.com/danielhoyosceldran/oxapp" className='g-flex g-horizonal-center-flex g-vertical-center-flex g-flex-gap6 g-link-behaviour' target="_blank" rel="noopener noreferrer"><img src={Github} alt="github logo" className='lp-github-oxapp lp-footer-content-github' />oxapp</a>
+                        </div>
+                    </section>
+                    <section className='lp-footer-info'>
 
                     </section>
-                </div>
-            </footer> */}
+            </footer>
         </div>
     );
 }
