@@ -4,3 +4,4 @@ import { accessRequest } from "./session";
 
 export const API_URL = "http://localhost:8081";
 export const LOGGED_IN = await accessRequest();
+console.log(LOGGED_IN);

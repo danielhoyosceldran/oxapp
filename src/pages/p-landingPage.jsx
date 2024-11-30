@@ -44,9 +44,9 @@ export default function LandingPage() {
             <footer className='lp-footer g-flex g-horizontal-center-flex g-flex-gap50'>
                     <section className='lp-footer-links g-flex g-flex-col g-flex-gap16'>
                         <h2>Links</h2>
+                        <CLpFooterLink icon={dhc_logo} text="my portfolio" link="https://danielhoyosceldran.vercel.app/" />
                         <CLpFooterLink icon={Github} text="oxerver" link="https://github.com/danielhoyosceldran/oxserver" />
                         <CLpFooterLink icon={Github} text="oxapp" link="https://github.com/danielhoyosceldran/oxapp" />
-                        <CLpFooterLink icon={dhc_logo} text="my portfolio" link="https://danielhoyosceldran.vercel.app/" />
                     </section>
                     <section className='lp-footer-contact  g-flex g-flex-col g-flex-gap16'>
                         <h2>Contact</h2>

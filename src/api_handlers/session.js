@@ -10,10 +10,15 @@ export async function logoutRequest() {
 }
 
 export async function accessRequest() {
-    const response = await fetch(API_URL + "/access", {
-        method: "GET",
-        credentials: "include"
-    });
-    const responseData = await response.json();
-    return responseData["status"];
+    try{
+        const response = await fetch(API_URL + "/access", {
+            method: "GET",
+            credentials: "include"
+        });
+        const responseData = await response.json();
+        return responseData["status"];
+    }
+    catch {
+        return false;
+    }
 }
