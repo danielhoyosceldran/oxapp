@@ -15,7 +15,6 @@ export default function Sign() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-
     const navigate = useNavigate();
     const auth = useAuth();
     
@@ -63,6 +62,8 @@ export default function Sign() {
             const responseData = await response.json();
             if (response.ok) {
                 console.log(responseData["message"]);
+                var refreshToken = responseData["refreshToken"];
+                refreshToken && localStorage.setItem("refreshToken", refreshToken)
                 acceptSign();
             } else {
                 console.log(responseData["message"]);
@@ -82,9 +83,6 @@ export default function Sign() {
         { label: "Password", state: password, setState: setPassword, id: ids.password },
     ];
     
-
-
-
     function getForm() {
         return (
             <form onSubmit={handleAccesRequest} className="a-form">

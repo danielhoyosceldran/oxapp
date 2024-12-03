@@ -1,5 +1,5 @@
 import { useContext, createContext, useState } from "react";
-import { accessRequest } from "../api_handlers/session";
+import { blankRequest } from "../api_handlers/session";
 import { API_URL, LOGGED_IN } from "../api_handlers/consts";
 
 const AuthContext = createContext({
@@ -11,7 +11,7 @@ export function AuthProvider({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(LOGGED_IN);
 
     async function saveUser() {
-        await setIsAuthenticated(await accessRequest());
+        await setIsAuthenticated(await blankRequest());
     }
 
     return (
