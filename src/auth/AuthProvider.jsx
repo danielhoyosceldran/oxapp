@@ -11,7 +11,7 @@ export function AuthProvider({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(LOGGED_IN);
 
     async function saveUser() {
-        setIsAuthenticated(await accessRequest());
+        await setIsAuthenticated(await accessRequest());
     }
 
     return (

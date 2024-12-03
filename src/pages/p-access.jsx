@@ -30,26 +30,28 @@ export default function Sign() {
         navigate('/');
     }
 
-    const AccessActions = {
-        signIn: "signIn",
-        signUp: "signUp"
-    }
-
-    const [accessAction, setAccessAction] = useState(AccessActions.signIn);
-
+    const AccessActions = Object.freeze({
+        SIGN_IN: "signin",
+        SIGN_UP: "signup",
+    });
+    
+    const [accessAction, setAccessAction] = useState(AccessActions.SIGN_IN);
+    
     function toggleForm() {
-        setAccessAction(accessAction === AccessActions.signIn
-            ? AccessActions.signUp
-            : AccessActions.signIn);
+        setAccessAction((prev) =>
+            prev === AccessActions.SIGN_IN ? AccessActions.SIGN_UP : AccessActions.SIGN_IN
+        );
     }
 
     function triggerError(message) {
         setErrorMessage(message);
     }
 
+    const [isLoading, setIsLoading] = useState(false);
+    
     async function handleAccesRequest(event) {
         event.preventDefault();
-        
+        setIsLoading(true);
         const data = {
             username: username,
             password: password,
@@ -58,17 +60,30 @@ export default function Sign() {
 
         try {
             const response = await sendAccessRequest(accessAction.toLocaleLowerCase(), data);
+            const responseData = await response.json();
             if (response.ok) {
-                console.log(response["message"]);
+                console.log(responseData["message"]);
                 acceptSign();
             } else {
-                console.log(response["message"]);
-                triggerError(response["message"]);
+                console.log(responseData["message"]);
+                triggerError(responseData["message"]);
             }
         } catch (error) {
             console.error("fetch error:", error);
         }
+        finally {
+            setIsLoading(false);
+        }
     }
+
+    const fields = [
+        ...(accessAction === AccessActions.SIGN_UP ? [{ label: "Name", state: name, setState: setName, id: ids.name }] : []),
+        { label: "Username", state: username, setState: setUserame, id: ids.username },
+        { label: "Password", state: password, setState: setPassword, id: ids.password },
+    ];
+    
+
+
 
     function getForm() {
         return (
@@ -77,44 +92,18 @@ export default function Sign() {
     
                 {errorMessage && <div className="a-errorLabel">{errorMessage}</div>}
     
-                {/* This bloc is only rendered in case of Sign Up */}
-                {accessAction === AccessActions.signUp && (
-                    <>
-                        <label htmlFor={ids.name}>Name</label>
+                {fields.map(({ label, state, setState, id }) => (
+                    <div key={id}>
+                        <label htmlFor={id}>{label}</label>
                         <input
-                            type="text"
-                            autoFocus
+                            type={label === "Password" ? "password" : "text"}
                             autoComplete="off"
-                            name="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            id={ids.name}
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            id={id}
                         />
-                    </>
-                )}
-    
-                <label htmlFor={ids.username}>Username</label>
-                <input
-                    type="text"
-                    autoFocus
-                    autoComplete="off"
-                    name={"username"}
-                    value={username}
-                    onChange={(e) => setUserame(e.target.value)}
-                    id={ids.username}
-                />
-    
-                <label htmlFor={ids.password}>
-                    Password
-                </label>
-                <input
-                    type="password"
-                    autoComplete="off"
-                    name={"password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    id={ids.password}
-                />
+                    </div>
+                ))}
     
                 <div className="a-accessOptions-container">
                     <p onClick={toggleForm} className="g-pointer">
@@ -124,8 +113,8 @@ export default function Sign() {
                                 : "Do you already have an account?"
                         }
                     </p>
-                    <button type="submit" className={"mainButton"}>
-                        {accessAction === AccessActions.signIn ? "Sign in" : "Sign up"}
+                    <button type="submit" className="mainButton" disabled={isLoading}>
+                        {isLoading ? "Loading..." : accessAction === AccessActions.SIGN_IN ? "Sign in" : "Sign up"}
                     </button>
                 </div>
             </form>

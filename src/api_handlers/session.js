@@ -32,5 +32,5 @@ export async function sendAccessRequest(action, data) {
         body: JSON.stringify(data),
         credentials: "include",
     });
-    return await response.json();
+    return response;
 }
