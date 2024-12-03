@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthProvider";
-import { useState, useId, useRef, useEffect } from "react";
+import { useState, useId } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
-import { API_URL } from "../api_handlers/consts";
+import { sendAccessRequest } from "../api_handlers/session";
 
 import oxapp_logo from "../assets/logo/transparent_logo.png";
 
@@ -13,6 +13,8 @@ export default function Sign() {
     const [name, setName] = useState("");
     const [username, setUserame] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     const navigate = useNavigate();
     const auth = useAuth();
@@ -41,11 +43,8 @@ export default function Sign() {
             : AccessActions.signIn);
     }
 
-    function triggerError(id, message) {
-        var errorBanner = document.getElementById(id);
-        if (errorBanner.classList.contains("invisible"))
-            errorBanner.classList.remove("invisible");
-        errorBanner.innerText = message;
+    function triggerError(message) {
+        setErrorMessage(message);
     }
 
     async function handleAccesRequest(event) {
@@ -53,29 +52,18 @@ export default function Sign() {
         
         const data = {
             username: username,
-            password: password
+            password: password,
+            ...(accessAction === AccessActions.signUp && { name }),
         }
 
-        if (accessAction === AccessActions.signUp)
-            data.name = name
-
         try {
-            const url = `${API_URL}/access/${accessAction.toLowerCase()}`;
-            console.log(url);
-            const response = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-                credentials: "include"
-            });
-
-            const responseData = await response.json();
+            const response = await sendAccessRequest(accessAction.toLocaleLowerCase(), data);
             if (response.ok) {
-                console.log(responseData["message"]);
+                console.log(response["message"]);
                 acceptSign();
             } else {
-                console.log(responseData["message"]);
-                triggerError("errorLabel", responseData["message"]);
+                console.log(response["message"]);
+                triggerError(response["message"]);
             }
         } catch (error) {
             console.error("fetch error:", error);
@@ -87,10 +75,7 @@ export default function Sign() {
             <form onSubmit={handleAccesRequest} className="a-form">
                 <h1>{accessAction === AccessActions.signIn ? "Sign in" : "Sign up"}</h1>
     
-                <div
-                    className="a-errorLabel invisible"
-                    id={"errorLabel"}
-                ></div>
+                {errorMessage && <div className="a-errorLabel">{errorMessage}</div>}
     
                 {/* This bloc is only rendered in case of Sign Up */}
                 {accessAction === AccessActions.signUp && (

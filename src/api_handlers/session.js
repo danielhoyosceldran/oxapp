@@ -7,6 +7,7 @@ export async function logoutRequest() {
         credentials: "include"
     });
     if (response.ok) location.reload();
+    // else -> pop up com que no s'ha pogut
 }
 
 export async function accessRequest() {
@@ -21,4 +22,15 @@ export async function accessRequest() {
     catch {
         return false;
     }
+}
+
+export async function sendAccessRequest(action, data) {
+    const url = `${API_URL}/access/${action}`;
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        credentials: "include",
+    });
+    return await response.json();
 }
