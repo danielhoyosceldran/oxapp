@@ -53,14 +53,15 @@ export async function apiRequest(endpoint, options = {}) {
             console.log("holaa")
             if (refreshToken) {
                 // Afegeix el refresh token al header
-                
-                const refreshTokenRequest = await fetch(API_URL + "/refresh_token", {
+                console.log(refreshToken);
+                const refreshTokenRequest = await fetch(API_URL + "/", {
                     method: "POST",
                     credentials: "include",
                     headers: {
                         Authorization: `Bearer ${refreshToken}`
                     }
                 })
+                console.log("hee");
                 if (refreshTokenRequest.ok) {
                     const retryOptions = {
                         ...finalOptions,
