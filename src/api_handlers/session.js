@@ -50,20 +50,30 @@ export async function apiRequest(endpoint, options = {}) {
         
         if (response.status === 401) {
             const refreshToken = localStorage.getItem("refreshToken");
+            console.log("holaa")
             if (refreshToken) {
                 // Afegeix el refresh token al header
-                const retryOptions = {
-                    ...finalOptions,
+                
+                const refreshTokenRequest = await fetch(API_URL + "/refresh_token", {
+                    method: "POST",
+                    credentials: "include",
                     headers: {
-                        ...finalOptions.headers,
-                        Authorization: `Bearer ${refreshToken}`,
-                    },
-                };
-
-                const retryResponse = await fetch(API_URL + endpoint, retryOptions);
-
-                if (retryResponse.ok) {
-                    return await retryResponse.json();
+                        Authorization: `Bearer ${refreshToken}`
+                    }
+                })
+                if (refreshTokenRequest.ok) {
+                    const retryOptions = {
+                        ...finalOptions,
+                        headers: {
+                            ...finalOptions.headers
+                        },
+                    };
+    
+                    const retryResponse = await fetch(API_URL + endpoint, retryOptions);
+    
+                    if (retryResponse.ok) {
+                        return await retryResponse.json();
+                    }
                 }
             }
             throw new Error("Unauthorized and no valid refresh token found");
