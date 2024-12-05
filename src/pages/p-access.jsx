@@ -111,7 +111,7 @@ export default function Sign() {
                                 : "Do you already have an account?"
                         }
                     </p>
-                    <button type="submit" className="mainButton" disabled={isLoading}>
+                    <button type="submit" className="g-button g-mainButton" disabled={isLoading}>
                         {isLoading ? "Loading..." : accessAction === AccessActions.SIGN_IN ? "Sign in" : "Sign up"}
                     </button>
                 </div>

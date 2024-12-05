@@ -26,7 +26,7 @@ html {
     --error-foreground-color: #752727;
 }
 
-.darkMode {
+[custom-theme="dark"] {
     --base-color: #121212;
     --base-variant-0: #1B1B1B;
     --base-variant-1: #242424;
@@ -40,6 +40,21 @@ html {
     --transparency-color: rgba(255, 255, 255, .1);
     --transparency-color-variant: rgba(255, 255, 255, .3);
 }
+
+/* .darkMode {
+    --base-color: #121212;
+    --base-variant-0: #1B1B1B;
+    --base-variant-1: #242424;
+    --base-variant-2: #2D2D2D;
+
+    --selection-color: #3c4852;
+    
+    --text-color: #fff;
+    --link-color: #8E8E90;
+    --accent-color: #DF9BFF;
+    --transparency-color: rgba(255, 255, 255, .1);
+    --transparency-color-variant: rgba(255, 255, 255, .3);
+} */
 
 *,
 *::after,
@@ -85,15 +100,16 @@ a {
     color: var(--accent-color);
 }
 
-.mainButton, .secondaryButton {
-    width: 80px;
+.g-button {
+    width: fit-content;
     text-align: center;
+    white-space: nowrap;
 
-    padding: 4px;
-    border-radius: 5px;
+    padding: 8px 16px;
+    border-radius: 4px;
 }
 
-.mainButton {
+.g-mainButton {
     background-color: var(--accent-color);
     color: #000;
 }

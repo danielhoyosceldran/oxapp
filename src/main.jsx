@@ -7,6 +7,7 @@ import Oxapp from './Oxapp.jsx'
 import Sign from './pages/p-access.jsx'
 
 import './styles/global/s-global.css'
+import { ThemeProvider } from './theme/themeProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,8 +22,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>,
 )

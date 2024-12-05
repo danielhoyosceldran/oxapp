@@ -2,19 +2,9 @@ import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import { useState, useEffect, useRef } from "react";
 import XcMessage from "../components/chatComponents/xc-message.jsx";
 import XcContact from "../components/chatComponents/xc-contact.jsx";
-import Sun from "../assets/icons/sun.svg";
-import Moon from "../assets/icons/moon.svg";
-import Exit_lm from "../assets/icons/exit_lm.svg";
-import Exit_dm from "../assets/icons/exit_dm.svg";
-import Plus_lm from "../assets/icons/plus-lm.svg";
-import Plus_dm from "../assets/icons/plus-dm.svg";
-import Back_lm from "../assets/icons/back-lm.svg";
-import Back_dm from "../assets/icons/back-dm.svg";
-import Send_lm from "../assets/icons/send_lm.svg";
-import Send_dm from "../assets/icons/send_dm.svg";
 import default_profile_photo from "../assets/profile_photos/default.png";
 import { logoutRequest } from "../api_handlers/session.js";
-
+import { useTheme } from "../theme/themeProvider.jsx";
 import { changeTheme, isDarkThemeOn } from "../utils/theme.jsx";
 
 import "../styles/chat/s-chat.css";
@@ -29,31 +19,7 @@ export default function Chat() {
   }
 
   const profile_photo = default_profile_photo;
-
-  const icons_lm = {
-    theme: Moon,
-    exit: Exit_lm,
-    plus: Plus_lm,
-    back: Back_lm,
-    send: Send_lm,
-  };
-
-  const icons_dm = {
-    theme: Sun,
-    exit: Exit_dm,
-    plus: Plus_dm,
-    back: Back_dm,
-    send: Send_dm,
-  };
-
-  const [themeIcons, setThemeIcons] = useState(
-    isDarkThemeOn() ? icons_dm : icons_lm
-  );
-
-  function handleChangeTheme() {
-    changeTheme();
-    setThemeIcons(isDarkThemeOn() ? icons_dm : icons_lm);
-  }
+  const { icons, toggleTheme } = useTheme();
 
   const containerRef = useRef(null);
 
@@ -71,14 +37,14 @@ export default function Chat() {
               <h1>Contacts</h1>
               {/* By the moment: unabeled */}
               {/* <button className="x-menu-header-hideMenu g-flex g-horizontal-center-flex g-vertical-center-flex">
-                                <img src={themeIcons.back} alt="" className="g-big-icon g-pointer g-icon-animation"/>
+                                <img src={icons.back} alt="" className="g-big-icon g-pointer g-icon-animation"/>
                             </button> */}
             </div>
             <div className="x-menu-header-secondRow g-flex g-horizontal-spbtw-flex g-vertical-center-flex">
               <input type="text" className="x-menu-header-searchBar" />
               <button className="x-menu-header-addContact g-flex g-horizontal-center-flex g-vertical-center-flex">
                 <img
-                  src={themeIcons.plus}
+                  src={icons.plus}
                   alt=""
                   className="g-icon g-pointer g-icon-animation"
                 />
@@ -101,10 +67,10 @@ export default function Chat() {
             <div className="x-menu-footer-actions -flex g-vertical-center-flex g-horizontal-center-flex">
               <button
                 className="g-pointer x-menu-footer-theme g-flex g-vertical-center-flex g-horizontal-center-flex"
-                onClick={handleChangeTheme}
+                onClick={toggleTheme}
               >
                 <img
-                  src={themeIcons.theme}
+                  src={icons.theme}
                   alt="light dark mode"
                   className="g-icon g-pointer g-icon-animation"
                 />
@@ -114,7 +80,7 @@ export default function Chat() {
                 className="g-pointer x-menu-footer-logout g-flex g-vertical-center-flex g-horizontal-center-flex"
               >
                 <img
-                  src={themeIcons.exit}
+                  src={icons.exit}
                   alt="light dark mode"
                   className="g-icon g-pointer g-icon-animation"
                 />
@@ -132,7 +98,7 @@ export default function Chat() {
             <XcMessage key={index}>{msg}</XcMessage>
           ))}
         </div>
-        <XcMessageInput sendIcon={themeIcons.send} />
+        <XcMessageInput sendIcon={icons.send} />
       </div>
     </div>
   );

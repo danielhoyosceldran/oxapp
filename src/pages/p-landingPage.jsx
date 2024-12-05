@@ -1,11 +1,6 @@
 import { Link } from 'react-router-dom';
 import { copyToclipboard } from '../utils/utils';
-
-import Next from "../assets/icons/next-dm.svg";
-import Github from "../assets/icons/github-dm.svg";
-import Logo from "../assets/logo/transparent_logo.png";
-import dhc_logo from "../assets/icons/dhc_logo.png";
-import mail from "../assets/icons/mail-dm.svg";
+import { useTheme } from '../theme/themeProvider';
 
 import "../styles/landingPage/s-landingPage.css"
 import "../styles/landingPage/s-aside.css"
@@ -15,13 +10,15 @@ import "../styles/landingPage/s-title.css"
 import CLpFooterLink from '../components/landingPageComponents/c-lp-footer-link';
 
 export default function LandingPage() {
+    const { icons, toggleTheme } = useTheme();
+
     return (
         <div className='lp-body'>
             <div className='g-flex'>
                 <div className='lp-content-container'>
                     <div className='lp-content-title g-flex g-vertical-center-flex g-horizontal-center-flex'>
                         <a href="#lp-content-about-id" className='g-flex g-horizontal-center-flex g-vertical-center-flex g-flex-gap20'>
-                            <img src={Logo} alt="" />
+                            <img src={icons.logo} alt="" />
                             <h1>OXAPP</h1>
                         </a>
                     </div>
@@ -37,20 +34,20 @@ export default function LandingPage() {
                 </div>
                 <aside className='lp-aside g-flex g-horizontal-center-flex g-vertical-center-flex g-background-pattern'>
                     <div className='g-pointer'>
-                        <Link to="/access"><img className='lp-aside-img' src={Next} alt="" /></Link>
+                        <Link to="/access"><img className='lp-aside-img' src={icons.next} alt="" /></Link>
                     </div>
                 </aside>
             </div>
             <footer className='lp-footer g-flex g-horizontal-center-flex g-flex-gap50'>
                     <section className='lp-footer-links g-flex g-flex-col g-flex-gap16'>
                         <h2>Links</h2>
-                        <CLpFooterLink icon={dhc_logo} text="my portfolio" link="https://danielhoyosceldran.vercel.app/" />
-                        <CLpFooterLink icon={Github} text="oxerver" link="https://github.com/danielhoyosceldran/oxserver" />
-                        <CLpFooterLink icon={Github} text="oxapp" link="https://github.com/danielhoyosceldran/oxapp" />
+                        <CLpFooterLink icon={icons.dhc_logo} text="my portfolio" link="https://danielhoyosceldran.vercel.app/" />
+                        <CLpFooterLink icon={icons.github} text="oxerver" link="https://github.com/danielhoyosceldran/oxserver" />
+                        <CLpFooterLink icon={icons.github} text="oxapp" link="https://github.com/danielhoyosceldran/oxapp" />
                     </section>
                     <section className='lp-footer-contact  g-flex g-flex-col g-flex-gap16'>
                         <h2>Contact</h2>
-                        <CLpFooterLink icon={mail} text="danhoycel@gmail.com" action={() => copyToclipboard("danhoycel@gmail.com")} />
+                        <CLpFooterLink icon={icons.mail} text="danhoycel@gmail.com" action={() => copyToclipboard("danhoycel@gmail.com")} />
                     </section>
             </footer>
         </div>
