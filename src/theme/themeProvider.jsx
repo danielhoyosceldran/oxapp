@@ -17,7 +17,7 @@ import Next_lm from "../assets/icons/next-lm.svg";
 import Github_dm from "../assets/icons/github-dm.svg";
 import Github_lm from "../assets/icons/github-lm.svg";
 
-import Logo from "../assets/logo/transparent_logo.png";
+import Logo from "../assets/logo/transparent_logo.svg";
 import dhc_logo from "../assets/icons/dhc_logo.png";
 
 // Definim les icones per a cada tema

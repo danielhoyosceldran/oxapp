@@ -5,10 +5,10 @@ html {
 }
 
 :root {
-    --base-color: #FFFFFF;
-    --base-variant-0: #F6F6F6;
-    --base-variant-1: #EDEDED;
-    --base-variant-2: #E4E4E4;
+    --base-color: #F6F6F6;
+    --base-variant-0: #EDEDED;
+    --base-variant-1: #E4E4E4;
+    --base-variant-2: #DBDBDB;
 
     --base-variant-neutral: #898989;
 
@@ -36,7 +36,6 @@ html {
     
     --text-color: #fff;
     --link-color: #8E8E90;
-    --accent-color: #DF9BFF;
     --transparency-color: rgba(255, 255, 255, .1);
     --transparency-color-variant: rgba(255, 255, 255, .3);
 }
@@ -98,6 +97,7 @@ a {
 
 a {
     color: var(--accent-color);
+    font-weight: 700;
 }
 
 .g-button {
