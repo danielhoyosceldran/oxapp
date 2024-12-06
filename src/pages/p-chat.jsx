@@ -3,14 +3,17 @@ import "../styles/chat/s-chat-menu/s-header.css";
 import "../styles/chat/s-chat-menu/s-contacts.css";
 import "../styles/chat/s-chat-menu/s-footer.css";
 import "../styles/chat/s-chat-container.css";
-import PropTypes from "prop-types";
-import XcMessageInput from "../components/chatComponents/xc-messageInput";
-import { useEffect, useRef } from "react";
-import XcMessage from "../components/chatComponents/xc-message.jsx";
-import XcContact from "../components/chatComponents/xc-contact.jsx";
-import default_profile_photo from "../assets/profile_photos/default.png";
-import { logoutRequest } from "../api_handlers/session.js";
+
 import { useTheme } from "../theme/themeProvider.jsx";
+import { CIconButton, CButton } from "../components/c-CustomButtons.jsx";
+import { logoutRequest } from "../api_handlers/session.js";
+import { useEffect, useRef } from "react";
+
+import PropTypes from "prop-types";
+import XcContact from "../components/chatComponents/xc-contact.jsx";
+import XcMessage from "../components/chatComponents/xc-message.jsx";
+import XcMessageInput from "../components/chatComponents/xc-messageInput";
+import default_profile_photo from "../assets/profile_photos/default.png";
 
 // Componente principal
 export default function Chat() {
@@ -58,9 +61,13 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
               />
             </button>
           </div>
-          <div className="x-menu-header-secondRow g-flex g-horizontal-spbtw-flex g-vertical-center-flex">
+          <div className="g-flex g-horizontal-spbtw-flex g-vertical-center-flex g-flex-gap10">
             <input type="text" className="x-menu-header-searchBar" placeholder="Search..." />
-            <button className="x-menu-header-addContact g-flex g-horizontal-center-flex g-vertical-center-flex">
+            {/* <CIconButton
+              icon={icons.reload}
+              alt="reload icon"
+            /> */}
+            <button className="g-flex g-horizontal-center-flex g-vertical-center-flex">
               <img
                 src={icons.plus}
                 alt="Add contact"
@@ -113,6 +120,7 @@ ChatMenu.propTypes = {
     plus: PropTypes.string.isRequired,
     theme: PropTypes.string.isRequired,
     exit: PropTypes.string.isRequired,
+    reload: PropTypes.string.isRequired,
   }).isRequired,
   profilePhoto: PropTypes.string.isRequired,
   contacts: PropTypes.arrayOf(PropTypes.string).isRequired,

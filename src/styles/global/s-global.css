@@ -109,14 +109,18 @@ a {
     border-radius: 4px;
 }
 
+.g-textButton {
+    padding: 0;
+    stroke: none;
+}
+
 .g-mainButton {
     background-color: var(--accent-color);
     color: #000;
 }
 
-.secondaryButton {
-    border: 1px solid var(--accent-color);
-    color: var(--accent-color);
+.g-secondaryButton {
+    border: 1px solid var(--text-color);
 }
 
 .invisible {
@@ -143,9 +147,19 @@ a {
     justify-content: space-between;
 }
 
+.g-small-icon {
+    height: 12px;
+    width: 12px;
+}
+
 .g-icon {
     height: 20px;
     width: 20px;
+}
+
+.g-big-icon {
+    height: 30px;
+    width: 30px;
 }
 
 .g-icon-animation {
@@ -155,11 +169,6 @@ a {
 .g-icon-animation:hover {
 
     transform: scale(1.2);
-}
-
-.g-big-icon {
-    height: 30px;
-    width: 30px;
 }
 
 .g-flex-gap6 {
