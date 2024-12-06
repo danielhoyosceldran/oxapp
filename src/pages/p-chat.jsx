@@ -5,7 +5,7 @@ import "../styles/chat/s-chat-menu/s-footer.css";
 import "../styles/chat/s-chat-container.css";
 
 import { useTheme } from "../theme/themeProvider.jsx";
-import { CIconButton, CButton } from "../components/c-CustomButtons.jsx";
+import { CIconButton, CTextButton } from "../components/c-CustomButtons.jsx";
 import { logoutRequest } from "../api_handlers/session.js";
 import { useEffect, useRef } from "react";
 
@@ -53,27 +53,35 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
         <header className="x-menu-header g-flex g-flex-col g-flex-gap20">
           <div className="x-menu-header-firstRow g-vertical-center-flex g-flex g-horizontal-spbtw-flex">
             <h1>Contacts</h1>
-            <button className="x-menu-header-hideMenu g-flex g-horizontal-center-flex g-vertical-center-flex">
+            {/* <button className="x-menu-header-hideMenu g-flex g-horizontal-center-flex g-vertical-center-flex">
               <img
                 src={icons.back}
                 alt="Hide menu"
                 className="g-big-icon g-pointer g-icon-animation"
               />
-            </button>
+            </button> */}
           </div>
           <div className="g-flex g-horizontal-spbtw-flex g-vertical-center-flex g-flex-gap10">
             <input type="text" className="x-menu-header-searchBar" placeholder="Search..." />
-            {/* <CIconButton
+            <CIconButton
+              onClick={()=>{}}
+              icon={icons.lupa}
+              alt="magnifying glass icon"
+            />
+          </div>
+          <div className="g-flex g-vertical-center-flex g-flex-gap20">
+            <CTextButton
               icon={icons.reload}
-              alt="reload icon"
-            /> */}
-            <button className="g-flex g-horizontal-center-flex g-vertical-center-flex">
-              <img
-                src={icons.plus}
-                alt="Add contact"
-                className="g-icon g-pointer g-icon-animation"
-              />
-            </button>
+              text="Reload"
+              classes="g-smallButton"
+              onClick={()=>{}}
+            />
+            <CTextButton
+              icon={icons.plus}
+              text="Add new"
+              classes="g-smallButton"
+              onClick={()=>{}}
+            />
           </div>
         </header>
         <div className="x-menu-contacts-container">
@@ -121,6 +129,7 @@ ChatMenu.propTypes = {
     theme: PropTypes.string.isRequired,
     exit: PropTypes.string.isRequired,
     reload: PropTypes.string.isRequired,
+    lupa: PropTypes.string.isRequired,
   }).isRequired,
   profilePhoto: PropTypes.string.isRequired,
   contacts: PropTypes.arrayOf(PropTypes.string).isRequired,

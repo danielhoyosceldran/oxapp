@@ -3,7 +3,7 @@ import "../styles/components/s-CButton.css";
 
 export function CIconButton({icon, alt, iconSizeClass="g-icon", onClick, classes=""}) {
     return(
-        <button className={`${classes} g-flex g-horizontal-center-flex g-vertical-center-flex`} onClick={onclick}>
+        <button className={`${classes} g-flex g-horizontal-center-flex g-vertical-center-flex`} onClick={onClick}>
             <img
             src={icon}
             alt={alt}
@@ -18,7 +18,7 @@ CIconButton.propTypes = {
     alt: PropTypes.string.isRequired,
     iconSizeClass: PropTypes.string,
     onClick: PropTypes.func.isRequired,
-    classes: PropTypes.string.isRequired
+    classes: PropTypes.string
 };
 
 export function CButton({
@@ -53,5 +53,36 @@ CButton.propTypes = {
     alt: PropTypes.string,
     iconSizeClass: PropTypes.string,
     onClick: PropTypes.func.isRequired,
-    classes: PropTypes.string.isRequired
+    classes: PropTypes.string
+};
+
+export function CTextButton({
+    icon=undefined,
+    alt="",
+    onClick,
+    text,
+    classes = "",
+    type = "button",
+}) {
+    return (
+        <button
+            type={type}
+            className={`${classes} g-textButton g-flex g-horizontal-center-flex g-vertical-center-flex g-flex-gap4`}
+            onClick={onClick}
+        >
+            {icon && <img src={icon} alt={alt}/>}
+            {text}
+        </button>
+    );
+}
+
+
+CTextButton.propTypes = {
+    icon: PropTypes.string,
+    type: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    alt: PropTypes.string,
+    iconSizeClass: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
+    classes: PropTypes.string
 };

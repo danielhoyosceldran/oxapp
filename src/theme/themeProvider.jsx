@@ -14,6 +14,8 @@ import Mail_dm from "../assets/icons/mail-dm.svg";
 import Mail_lm from "../assets/icons/mail-lm.svg";
 import Next_dm from "../assets/icons/next-dm.svg";
 import Next_lm from "../assets/icons/next-lm.svg";
+import Lupa_dm from "../assets/icons/lupa-dm.svg";
+import Lupa_lm from "../assets/icons/lupa-lm.svg";
 import Reload_dm from "../assets/icons/reload-dm.svg";
 import Reload_lm from "../assets/icons/reload-lm.svg";
 import Github_dm from "../assets/icons/github-dm.svg";
@@ -33,6 +35,7 @@ const icons_lm = {
     send: Send_lm || Send_dm,
     mail: Mail_lm || Mail_dm,
     next: Next_lm || Next_dm,
+    lupa: Lupa_lm || Lupa_dm,
     reload: Reload_lm || Reload_dm,
     github: Github_lm || Github_dm,
     logo: Logo,
@@ -47,6 +50,7 @@ const icons_dm = {
     send: Send_dm || Send_lm,
     mail: Mail_dm || Mail_lm,
     next: Next_dm || Next_lm,
+    lupa: Lupa_dm || Lupa_lm,
     reload: Reload_dm || Reload_lm,
     github: Github_dm || Github_lm,
     logo: Logo,

@@ -114,6 +114,14 @@ a {
     stroke: none;
 }
 
+.g-smallButton {
+    font-size: small;
+    & img {
+        height: 15px;
+        width: 15px;
+    }
+}
+
 .g-mainButton {
     background-color: var(--accent-color);
     color: #000;
@@ -148,8 +156,8 @@ a {
 }
 
 .g-small-icon {
-    height: 12px;
-    width: 12px;
+    height: 15px;
+    width: 15px;
 }
 
 .g-icon {
@@ -169,6 +177,10 @@ a {
 .g-icon-animation:hover {
 
     transform: scale(1.2);
+}
+
+.g-flex-gap4 {
+    gap: 4px;
 }
 
 .g-flex-gap6 {
