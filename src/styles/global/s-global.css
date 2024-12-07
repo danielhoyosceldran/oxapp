@@ -139,6 +139,10 @@ a {
     display: flex;
 }
 
+.g-flex-grow1 {
+    flex-grow: 1;
+}
+
 .g-flex-col {
     flex-direction: column;
 }

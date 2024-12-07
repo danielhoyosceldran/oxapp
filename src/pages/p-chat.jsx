@@ -84,7 +84,7 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
             />
           </div>
         </header>
-        <div className="x-menu-contacts-container">
+        <div className="x-menu-contacts-container g-flex g-flex-col g-flex-gap20">
           {contacts.map((contact, index) => (
             <XcContact key={index} name={contact} />
           ))}

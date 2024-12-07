@@ -1,0 +1,15 @@
+.xc-contact-container{
+    width: 100%;
+}
+
+.xc-contact-photo {
+    height: 35px;
+}
+
+.xc-contact-content {
+    flex-grow: 1;
+
+    & p {
+        font-size: small;
+    }
+}
