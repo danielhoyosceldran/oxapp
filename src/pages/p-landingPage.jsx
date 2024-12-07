@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { copyToclipboard } from '../utils/utils';
 import { useTheme } from '../theme/themeProvider';
+import { useEffect, useState } from 'react';
 
 import "../styles/landingPage/s-landingPage.css"
 import "../styles/landingPage/s-aside.css"
@@ -12,13 +13,23 @@ import CLpFooterLink from '../components/landingPageComponents/c-lp-footer-link'
 export default function LandingPage() {
     const { icons, toggleTheme } = useTheme();
 
+    const [logoImage, setLogoImage] = useState(icons.logo);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setLogoImage((prev) => {return prev === icons.logo ? icons.logo_noCaret : icons.logo});
+        }, 500);
+
+        return () => clearInterval(interval); // Netegem l'interval quan el component es desmunta
+    }, []);
+
     return (
         <div className='lp-body'>
             <div className='g-flex'>
                 <div className='lp-content-container'>
                     <div className='lp-content-title g-flex g-vertical-center-flex g-horizontal-center-flex'>
                         <a href="#lp-content-about-id" className='g-flex g-horizontal-center-flex g-vertical-center-flex g-flex-gap20'>
-                            <img src={icons.logo} alt="" />
+                            <img src={logoImage} alt="" />
                             <h1>OXAPP</h1>
                         </a>
                     </div>

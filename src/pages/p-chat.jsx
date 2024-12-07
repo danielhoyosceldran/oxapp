@@ -10,7 +10,7 @@ import { logoutRequest } from "../api_handlers/session.js";
 import { useEffect, useRef } from "react";
 
 import PropTypes from "prop-types";
-import XcContact from "../components/chatComponents/xc-contact.jsx";
+import XcContact from "../components/chatComponents/xc-contactCard.jsx";
 import XcMessage from "../components/chatComponents/xc-message.jsx";
 import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import default_profile_photo from "../assets/profile_photos/default.png";
@@ -84,7 +84,7 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
             />
           </div>
         </header>
-        <div className="g-flex g-flex-col g-flex-grow1">
+        <div className="x-menu-contacts g-flex g-flex-col g-flex-grow1">
           {contacts.map((contact, index) => (
             <XcContact key={index} name={contact} />
           ))}

@@ -22,6 +22,7 @@ import Github_dm from "../assets/icons/github-dm.svg";
 import Github_lm from "../assets/icons/github-lm.svg";
 
 import Logo from "../assets/logo/transparent_logo.svg";
+import Logo_gif from "../assets/logo/transparent_logo_noCaret.svg";
 import dhc_logo from "../assets/icons/dhc_logo.png";
 import PropTypes from "prop-types";
 
@@ -39,6 +40,7 @@ const icons_lm = {
     reload: Reload_lm || Reload_dm,
     github: Github_lm || Github_dm,
     logo: Logo,
+    logo_noCaret: Logo_gif,
     dhc_logo: dhc_logo
 };
 
@@ -54,6 +56,7 @@ const icons_dm = {
     reload: Reload_dm || Reload_lm,
     github: Github_dm || Github_lm,
     logo: Logo,
+    logo_noCaret: Logo_gif,
     dhc_logo: dhc_logo
 };
 

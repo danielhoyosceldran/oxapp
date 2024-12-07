@@ -9,8 +9,8 @@ export default function XcContact({
         username: "unknowun"
     },
     lastMessage = {
-        text: "...",
-        time: "xx:xx"
+        text: "",
+        time: ""
     }
 }) {
     const ho = () => {

@@ -4,8 +4,7 @@ import { useState, useId } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import { sendAccessRequest } from "../api_handlers/session";
-
-import oxapp_logo from "../assets/logo/transparent_logo.png";
+import { useTheme } from "../theme/themeProvider";
 
 import "../styles/access/s-access.css";
 
@@ -14,6 +13,8 @@ export default function Sign() {
     const [username, setUserame] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    const { icons, toggleTheme } = useTheme();
 
     const navigate = useNavigate();
     const auth = useAuth();
@@ -123,7 +124,7 @@ export default function Sign() {
     : (
         <div className="a-body">
             <header className="a-header">
-                <Link to={"/"}><img className="a-header-logo" src={oxapp_logo} alt="oxapp logo"/></Link>
+                <Link to={"/"}><img className="a-header-logo" src={icons.logo} alt="oxapp logo"/></Link>
             </header>
             <div className="a-forms-container">
                 {getForm()}
