@@ -1,15 +1,29 @@
 .xc-contact-container{
     width: 100%;
+    padding: 12px 25px;
+
+    &:hover {
+        background-color: var(--base-variant-1);
+    }
 }
 
 .xc-contact-photo {
     height: 35px;
+    width: 35px;
 }
 
 .xc-contact-content {
     flex-grow: 1;
 
-    & p {
+    & p, span {
         font-size: small;
     }
+}
+
+.xc-contact-content-lastMessage {
+    max-width: 165px;
+    min-width: 100px;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

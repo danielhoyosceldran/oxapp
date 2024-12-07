@@ -211,6 +211,10 @@ a {
     gap: 20px;
 }
 
+.g-flex-gap24 {
+    gap: 24px;
+}
+
 .g-flex-gap40 {
     gap: 40px;
 }

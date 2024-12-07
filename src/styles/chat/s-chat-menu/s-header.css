@@ -1,3 +1,8 @@
+.x-menu-header {
+    margin: 25px;
+    margin-bottom: 0;
+}
+
 .x-menu-header-hideMenu {
     /* Per a alinear les icones del header */
     position: relative;
