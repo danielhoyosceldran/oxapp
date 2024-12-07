@@ -19,12 +19,15 @@ import default_profile_photo from "../assets/profile_photos/default.png";
 export default function Chat() {
   const { icons, toggleTheme } = useTheme();
   const containerRef = useRef(null);
-  const contacts = ["Miquel", "Joan", "Birres", "Montse"]; // Mock data
-  const messages = ["hola", "hey", "ciao", "adeu", "epaa"]; // Mock data
+  const contacts = ["Miquel", ]; // Mock data
+  const messages = ["hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "epaa"]; // Mock data
 
-  useEffect(() => {
+  function scrollToBottom() {
     const container = containerRef.current;
     container.scrollTop = container.scrollHeight; // Fa que el scroll comenci al final
+  }
+  useEffect(() => {
+    scrollToBottom();
   }, []);
 
   async function handleLogout() {
@@ -40,7 +43,7 @@ export default function Chat() {
         onLogout={handleLogout}
         onToggleTheme={toggleTheme}
       />
-      <ChatContainer messages={messages} icons={icons} containerRef={containerRef} />
+      <ChatContainer messages={messages} icons={icons} containerRef={containerRef} callBack={scrollToBottom} />
     </div>
   );
 }
@@ -138,7 +141,7 @@ ChatMenu.propTypes = {
 };
 
 // Subcomponent per al contenidor del xat
-function ChatContainer({ messages, icons, containerRef }) {
+function ChatContainer({ messages, icons, containerRef, callBack }) {
   return (
     <div className="x-chatContainer g-flex g-flex-col" id="x-xatContainer-id">
       <div
@@ -149,7 +152,7 @@ function ChatContainer({ messages, icons, containerRef }) {
           <XcMessage key={index}>{msg}</XcMessage>
         ))}
       </div>
-      <XcMessageInput sendIcon={icons.send} />
+      <XcMessageInput sendIcon={icons.send} callBack={callBack} />
     </div>
   );
 }
