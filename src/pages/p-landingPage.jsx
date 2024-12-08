@@ -52,13 +52,17 @@ export default function LandingPage() {
             <footer className='lp-footer g-flex g-horizontal-center-flex g-flex-gap50'>
                     <section className='lp-footer-links g-flex g-flex-col g-flex-gap16'>
                         <h2>Links</h2>
-                        <CLpFooterLink icon={icons.dhc_logo} text="my portfolio" link="https://danielhoyosceldran.vercel.app/" />
+                        <CLpFooterLink icon={icons.dhc_logo} text="My portfolio" link="https://danielhoyosceldran.vercel.app/" />
                         <CLpFooterLink icon={icons.github} text="oxerver" link="https://github.com/danielhoyosceldran/oxserver" />
                         <CLpFooterLink icon={icons.github} text="oxapp" link="https://github.com/danielhoyosceldran/oxapp" />
                     </section>
                     <section className='lp-footer-contact  g-flex g-flex-col g-flex-gap16'>
                         <h2>Contact</h2>
                         <CLpFooterLink icon={icons.mail} text="danhoycel@gmail.com" action={() => copyToclipboard("danhoycel@gmail.com")} />
+                    </section>
+                    <section className='g-flex g-flex-col g-flex-gap16'>
+                        <h2>Contact</h2>
+                        <CLpFooterLink icon={icons.theme} text="Change Theme" action={toggleTheme} />
                     </section>
             </footer>
         </div>

@@ -2,7 +2,7 @@ import { useRef, useEffect, useId } from "react";
 
 import "../../styles/chat/chatComponents/s-xc-messageInput.css";
 
-export default function XcMessageInput({sendIcon, callBack}) {
+export default function XcMessageInput({sendIcon, scrollToBottom, checkScroll}) {
     const textareaRef = useRef(null);
     const xc_messageInput_id = useId();
 
@@ -11,9 +11,10 @@ export default function XcMessageInput({sendIcon, callBack}) {
 
         // Ajusta l'alçada automàticament
         const handleInput = () => {
+            const scroll = checkScroll();
             textarea.style.height = "auto";
             textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
-            callBack()
+            scroll && scrollToBottom();
         };
 
         textarea.addEventListener("input", handleInput);

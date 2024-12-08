@@ -26,6 +26,13 @@ export default function Chat() {
     const container = containerRef.current;
     container.scrollTop = container.scrollHeight; // Fa que el scroll comenci al final
   }
+
+  function isScrollBottom() {
+    const container = containerRef.current;
+    const { scrollTop, scrollHeight, clientHeight } = container;
+    return (scrollTop + clientHeight >= scrollHeight);
+  }
+
   useEffect(() => {
     scrollToBottom();
   }, []);
@@ -43,7 +50,7 @@ export default function Chat() {
         onLogout={handleLogout}
         onToggleTheme={toggleTheme}
       />
-      <ChatContainer messages={messages} icons={icons} containerRef={containerRef} callBack={scrollToBottom} />
+      <ChatContainer messages={messages} icons={icons} containerRef={containerRef} scrollToBottom={scrollToBottom} checlScroll={isScrollBottom} />
     </div>
   );
 }
@@ -141,7 +148,7 @@ ChatMenu.propTypes = {
 };
 
 // Subcomponent per al contenidor del xat
-function ChatContainer({ messages, icons, containerRef, callBack }) {
+function ChatContainer({ messages, icons, containerRef, scrollToBottom, checlScroll}) {
   return (
     <div className="x-chatContainer g-flex g-flex-col" id="x-xatContainer-id">
       <div
@@ -152,7 +159,7 @@ function ChatContainer({ messages, icons, containerRef, callBack }) {
           <XcMessage key={index}>{msg}</XcMessage>
         ))}
       </div>
-      <XcMessageInput sendIcon={icons.send} callBack={callBack} />
+      <XcMessageInput sendIcon={icons.send} scrollToBottom={scrollToBottom} checkScroll={checlScroll} />
     </div>
   );
 }
