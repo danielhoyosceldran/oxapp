@@ -19,7 +19,7 @@ import default_profile_photo from "../assets/profile_photos/default.png";
 export default function Chat() {
   const { icons, toggleTheme } = useTheme();
   const containerRef = useRef(null);
-  const contacts = ["Miquel", ]; // Mock data
+  const contacts = [...Array(20).keys()] // Mock data
   const messages = ["hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "epaa"]; // Mock data
 
   function scrollToBottom() {
@@ -94,7 +94,7 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
             />
           </div>
         </header>
-        <div className="x-menu-contacts g-flex g-flex-col g-flex-grow1">
+        <div className="x-menu-contacts g-vertical-scroll g-scroll-shadows g-styled-scrollbar g-flex g-flex-col g-flex-grow1">
           {contacts.map((contact, index) => (
             <XcContact key={index} name={contact} />
           ))}
@@ -156,7 +156,12 @@ function ChatContainer({ messages, icons, containerRef, scrollToBottom, checlScr
         className="x-chat-messages-container g-flex g-flex-col g-styled-scrollbar"
       >
         {messages.map((msg, index) => (
-          <XcMessage key={index}>{msg}</XcMessage>
+          <XcMessage 
+            key={index}
+            classes={index % 2 === 0 ? "xc-message-sent" : "xc-message-received"}
+          >
+            {msg}
+          </XcMessage>
         ))}
       </div>
       <XcMessageInput sendIcon={icons.send} scrollToBottom={scrollToBottom} checkScroll={checlScroll} />
