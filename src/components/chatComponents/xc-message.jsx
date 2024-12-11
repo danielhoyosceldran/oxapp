@@ -3,7 +3,7 @@ import '../../styles/chat/chatComponents/s-xc-message.css';
 import { useTheme } from "../../theme/themeProvider";
 
 export default function XcMessage({children, classes}) {
-    const { icons, toggleTheme } = useTheme();
+    const { icons } = useTheme();
     return (
         <div className={`${classes} xc-message-box g-flex`}>
             <div className="g-flex g-flex-col g-flex-gap10">

@@ -10,7 +10,7 @@
 .xc-message-box.xc-message-sent .xc-message-tail {
     position: absolute;
     height: 30px;
-    top: -1px;
+    top: -2px;
     right: -10px;
 }
 
@@ -37,9 +37,7 @@
 .xc-message {
     background-color: var(--base-variant-0);
     min-width: 200px;
-    min-height: 100px;
-    max-width: 350px;
-    max-height: 600px;
+    max-width: 650px;
     
     padding: 15px;
 

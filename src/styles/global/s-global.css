@@ -252,3 +252,7 @@ a {
     scrollbar-width: thin;
     scrollbar-color: var(--base-variant-2) var(--base-variant-0);
 }
+
+.g-text-nowrap {
+    white-space: nowrap;
+}

@@ -1,4 +1,5 @@
-.xc-messageInput-contiainer {
+/* Old */
+/* .xc-messageInput-contiainer {
     background-color: transparent;
     width: 100%;
     box-sizing: border-box;
@@ -49,6 +50,67 @@
 
         transform: scale(1.4);
     }
+} */
+
+/* New */
+.xc-messageInput-contiainer {
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
 }
 
+.xc-messageInput-contiainer > div {
+    position: relative;
+    
+    & img {
+        height: 30px;
+        position: absolute;
+        top: -2px;
+        right: -10px;
+    }
+}
 
+.xc-sendButton {
+    background-color: var(--base-variant-0);
+    
+    height: 50px;
+    width: 50px;
+
+    border-radius: 15px;
+
+    & img {
+        transition: transform .2s;
+    }
+
+    &:hover img {
+
+        transform: scale(1.4);
+    }
+}
+
+.xc-messageInput {
+    background-color: var(--base-variant-0);
+    
+    padding: 15px;
+    
+    width: 600px;
+    max-height: 400px;
+    
+    scrollbar-width: thin;
+    scrollbar-color: var(--transparency-color) transparent;
+    resize: none;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    border-radius: 15px;
+
+    color: var(--text-color);
+
+    transition: all .2s;
+
+    /* &:focus {
+        width: 600px;
+    } */
+}
