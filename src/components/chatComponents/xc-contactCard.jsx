@@ -6,7 +6,7 @@ export default function XcContact({
     contactInformation = {
         profilePhoto: undefined,
         name: "unknown",
-        username: "unknowun"
+        username: "unknown"
     },
     lastMessage = {
         text: "",

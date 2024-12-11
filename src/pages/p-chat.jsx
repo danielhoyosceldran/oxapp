@@ -158,7 +158,7 @@ function ChatContainer({ messages, icons, containerRef, scrollToBottom, checlScr
         {messages.map((msg, index) => (
           <XcMessage 
             key={index}
-            classes={index % 2 === 0 ? "xc-message-sent" : "xc-message-received"}
+            classes={index % 2 === 0 ? "xc-message-sent" : "xc-message-recieved"}
           >
             {msg}
           </XcMessage>

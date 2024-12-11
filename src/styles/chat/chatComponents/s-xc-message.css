@@ -1,10 +1,33 @@
 .xc-message-box {
     width: 100%;
     margin: 15px 0;
+
+    & > div {
+        position: relative;
+    }
+}
+
+.xc-message-box.xc-message-sent .xc-message-tail {
+    position: absolute;
+    height: 30px;
+    top: -1px;
+    right: -10px;
+}
+
+.xc-message-box.xc-message-recieved .xc-message-tail {
+    transform: scale(-1, 1);
+    position: absolute;
+    height: 30px;
+    top: 33px;
+    left: -10px;
 }
 
 .xc-message-sent {
     justify-content: end;
+
+    & .xc-message-user {
+        display: none;
+    }
 }
 
 .xc-message-recieved {
