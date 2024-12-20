@@ -9,4 +9,7 @@ export default defineConfig({
   //   port: 5173, // Default port for Vite
   //   open: true, // Optional: Automatically open in the default browser
   // },
+  build: {
+    target: 'esnext',  // Utilitzar ES2022 o superior per suportar top-level await
+  },
 });
