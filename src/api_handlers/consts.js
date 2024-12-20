@@ -3,5 +3,7 @@
 import { blankRequest } from "./session";
 
 export const API_URL = "http://localhost:8081";
-export const LOGGED_IN = await blankRequest();
-console.log(LOGGED_IN);
+(async () => {
+    const LOGGED_IN = await blankRequest();
+    console.log(LOGGED_IN);
+  })();
