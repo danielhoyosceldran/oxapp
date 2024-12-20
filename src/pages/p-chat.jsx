@@ -7,19 +7,19 @@ import "../styles/chat/s-chat-container.css";
 import { useTheme } from "../theme/themeProvider.jsx";
 import { CIconButton, CTextButton } from "../components/c-CustomButtons.jsx";
 import { logoutRequest } from "../api_handlers/session.js";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import PropTypes from "prop-types";
 import XcContact from "../components/chatComponents/xc-contactCard.jsx";
 import XcMessage from "../components/chatComponents/xc-message.jsx";
 import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import default_profile_photo from "../assets/profile_photos/default.png";
+import XcAddContactGroup from "../components/chatComponents/xc-addContactGroup.jsx";
 
 // Componente principal
 export default function Chat() {
   const { icons, toggleTheme } = useTheme();
   const containerRef = useRef(null);
-  const addContactGroupRef = useRef(null);
   const contacts = [...Array(20).keys()] // Mock data
   const messages = ["hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five."]; // Mock data
 
@@ -52,22 +52,23 @@ export default function Chat() {
         onLogout={handleLogout}
         onToggleTheme={toggleTheme}
       />
-      <AddContactGroup ref={addContactGroupRef}/>
       <ChatContainer messages={messages} icons={icons} containerRef={containerRef} scrollToBottom={scrollToBottom} checlScroll={isScrollBottom} />
     </div>
   );
 }
 
-function AddContactGroup() {
-  return (
-    <div>
-      holaaa
-    </div>
-  );
-}
 
 // Subcomponent per al menú lateral
 function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
+  const [showNewDiv, setShowNewDiv] = useState(false);
+
+  function handleShowDiv() {
+    setShowNewDiv(true);
+  }
+
+  function handleHideDiv() {
+    setShowNewDiv(false);
+  }
   return (
     <div className="x-menu-container" id="x-contactsBoxContainer-id">
       <div className="x-menu g-flex-gap20">
@@ -101,9 +102,12 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
               icon={icons.plus}
               text="Add new"
               classes="g-smallButton"
-              onClick={handleAddContactGroup}
+              onClick={handleShowDiv}
             />
           </div>
+          {showNewDiv && (
+            <XcAddContactGroup />
+          )}
         </header>
         <div className="x-menu-contacts g-vertical-scroll g-scroll-shadows g-styled-scrollbar g-flex g-flex-col g-flex-grow1">
           {contacts.map((contact, index) => (
