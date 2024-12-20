@@ -83,11 +83,11 @@ export default function Sign() {
         { label: "Username", state: username, setState: setUserame, id: ids.username },
         { label: "Password", state: password, setState: setPassword, id: ids.password },
     ];
-    
+    console.log(accessAction === AccessActions.signIn);
     function getForm() {
         return (
             <form onSubmit={handleAccesRequest} className="a-form">
-                <h1>{accessAction === AccessActions.signIn ? "Sign in" : "Sign up"}</h1>
+                <h1>{accessAction === AccessActions.SIGN_IN ? "Sign in" : "Sign up"}</h1>
     
                 {errorMessage && <div className="a-errorLabel">{errorMessage}</div>}
     
@@ -107,7 +107,7 @@ export default function Sign() {
                 <div className="a-accessOptions-container">
                     <p onClick={toggleForm} className="g-pointer">
                         {
-                            accessAction === AccessActions.signIn
+                            accessAction === AccessActions.SIGN_IN
                                 ? "Create new account"
                                 : "Do you already have an account?"
                         }

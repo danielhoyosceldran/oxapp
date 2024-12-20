@@ -19,6 +19,7 @@ import default_profile_photo from "../assets/profile_photos/default.png";
 export default function Chat() {
   const { icons, toggleTheme } = useTheme();
   const containerRef = useRef(null);
+  const addContactGroupRef = useRef(null);
   const contacts = [...Array(20).keys()] // Mock data
   const messages = ["hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five."]; // Mock data
 
@@ -41,6 +42,7 @@ export default function Chat() {
     await logoutRequest();
   }
 
+
   return (
     <div className="x-body g-flex" id="x-body-id">
       <ChatMenu
@@ -50,7 +52,16 @@ export default function Chat() {
         onLogout={handleLogout}
         onToggleTheme={toggleTheme}
       />
+      <AddContactGroup ref={addContactGroupRef}/>
       <ChatContainer messages={messages} icons={icons} containerRef={containerRef} scrollToBottom={scrollToBottom} checlScroll={isScrollBottom} />
+    </div>
+  );
+}
+
+function AddContactGroup() {
+  return (
+    <div>
+      holaaa
     </div>
   );
 }
@@ -90,7 +101,7 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
               icon={icons.plus}
               text="Add new"
               classes="g-smallButton"
-              onClick={()=>{}}
+              onClick={handleAddContactGroup}
             />
           </div>
         </header>
@@ -148,7 +159,7 @@ ChatMenu.propTypes = {
 };
 
 // Subcomponent per al contenidor del xat
-function ChatContainer({ messages, icons, containerRef, scrollToBottom, checlScroll}) {
+function ChatContainer({ messages, icons, containerRef, scrollToBottom, checkScroll}) {
   return (
     <div className="x-chatContainer g-flex g-flex-col" id="x-xatContainer-id">
       <div
@@ -164,7 +175,7 @@ function ChatContainer({ messages, icons, containerRef, scrollToBottom, checlScr
           </XcMessage>
         ))}
       </div>
-      <XcMessageInput sendIcon={icons.send} scrollToBottom={scrollToBottom} checkScroll={checlScroll} />
+      <XcMessageInput sendIcon={icons.send} scrollToBottom={scrollToBottom} checkScroll={checkScroll} />
     </div>
   );
 }
@@ -177,4 +188,6 @@ ChatContainer.propTypes = {
   containerRef: PropTypes.shape({
     current: PropTypes.instanceOf(Element),
   }),
+  scrollToBottom: PropTypes.func.isRequired,
+  checkScroll: PropTypes.func.isRequired
 };
