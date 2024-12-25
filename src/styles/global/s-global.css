@@ -238,12 +238,6 @@ a {
     background-size: calc(var(--s)/4.667) var(--s),var(--s) calc(var(--s)/4.667);
 }
 
-@media screen  and (max-width: 790px) {
-    .g-background-pattern {
-        --s: 65px;
-    }
-}
-
 .g-link-behaviour {
     &:hover {
         text-decoration: underline;
@@ -261,4 +255,14 @@ a {
 
 .g-text-nowrap {
     white-space: nowrap;
+}
+
+@media screen  and (max-width: 790px) {
+    * {
+        font-size: small;
+    }
+
+    .g-background-pattern {
+        --s: 90px;
+    }
 }
