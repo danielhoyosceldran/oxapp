@@ -26,3 +26,9 @@
         padding-right: 400px;
     }
 }
+
+@media screen  and (max-width: 1000px) {
+    .lp-footer {
+        padding: 100px;
+    }
+}

@@ -16,7 +16,6 @@ export async function apiRequest({endpoint, options = {}}) {
         
         if (response.status === 401) {
             const refreshToken = localStorage.getItem("refreshToken");
-            console.log("holaa")
             if (refreshToken) {
                 // Afegeix el refresh token al header
                 console.log(refreshToken);
@@ -27,7 +26,6 @@ export async function apiRequest({endpoint, options = {}}) {
                         Authorization: `Bearer ${refreshToken}`
                     }
                 })
-                console.log("hee");
                 if (refreshTokenRequest.ok) {
                     const retryOptions = {
                         ...finalOptions,

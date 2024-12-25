@@ -8,6 +8,7 @@ import { useTheme } from "../theme/themeProvider.jsx";
 import { CIconButton, CTextButton } from "../components/c-CustomButtons.jsx";
 import { logoutRequest } from "../api_handlers/session.js";
 import { useEffect, useRef, useState } from "react";
+import { getContacts } from "../api_handlers/user_requests.js";
 
 import PropTypes from "prop-types";
 import XcContact from "../components/chatComponents/xc-contactCard.jsx";
@@ -19,9 +20,24 @@ import XcAddContactGroup from "../components/chatComponents/xc-addContactGroup.j
 // Componente principal
 export default function Chat() {
   const { icons, toggleTheme } = useTheme();
-  const containerRef = useRef(null);
-  const contacts = [...Array(20).keys()] // Mock data
-  const messages = ["hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "epaa", "hola", "hey", "ciao", "adeu", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five."]; // Mock data
+  const containerRef = useRef(null); // Mock data
+  const messages = [
+    "hola",
+    "hey",
+    "ciao",
+    "adeu",
+    "epaa",
+    "hola",
+    "hey",
+    "ciao",
+    "adeu",
+    "epaa",
+    "hola",
+    "hey",
+    "ciao",
+    "adeu",
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
+  ]; // Mock data
 
   function scrollToBottom() {
     const container = containerRef.current;
@@ -31,7 +47,7 @@ export default function Chat() {
   function isScrollBottom() {
     const container = containerRef.current;
     const { scrollTop, scrollHeight, clientHeight } = container;
-    return (scrollTop + clientHeight >= scrollHeight);
+    return scrollTop + clientHeight >= scrollHeight;
   }
 
   useEffect(() => {
@@ -42,51 +58,75 @@ export default function Chat() {
     await logoutRequest();
   }
 
-
   return (
     <div className="x-body g-flex" id="x-body-id">
       <ChatMenu
         icons={icons}
         profilePhoto={default_profile_photo}
-        contacts={contacts}
         onLogout={handleLogout}
         onToggleTheme={toggleTheme}
       />
-      <ChatContainer messages={messages} icons={icons} containerRef={containerRef} scrollToBottom={scrollToBottom} checlScroll={isScrollBottom} />
+      <ChatContainer
+        messages={messages}
+        icons={icons}
+        containerRef={containerRef}
+        scrollToBottom={scrollToBottom}
+        checkScroll={isScrollBottom}
+      />
     </div>
   );
 }
 
-
 // Subcomponent per al menú lateral
-function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
+export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
   const [showNewDiv, setShowNewDiv] = useState(false);
+  const [contacts, setContacts] = useState([]);
 
   function handleShowDiv() {
     setShowNewDiv(true);
   }
 
+  async function handleGetContacts() {
+    try {
+      const response = await getContacts();
+
+      // Filtrar duplicats basant-nos en `username` o `usernameOrId`.
+      const uniqueContacts = Array.from(
+        new Map(
+          response.contacts.map((contact) => [
+            contact.username || contact.usernameOrId,
+            contact,
+          ])
+        ).values()
+      );
+      console.log(uniqueContacts);
+
+      // Actualitzar l'estat dels contactes únics.
+      setContacts(uniqueContacts);
+    } catch (error) {
+      console.error("Error fetching contacts:", error);
+    }
+  }
+
   function handleHideDiv() {
     setShowNewDiv(false);
   }
+
   return (
     <div className="x-menu-container" id="x-contactsBoxContainer-id">
       <div className="x-menu g-flex-gap20">
         <header className="x-menu-header g-flex g-flex-col g-flex-gap20">
           <div className="x-menu-header-firstRow g-vertical-center-flex g-flex g-horizontal-spbtw-flex">
             <h1>Contacts</h1>
-            {/* <button className="x-menu-header-hideMenu g-flex g-horizontal-center-flex g-vertical-center-flex">
-              <img
-                src={icons.back}
-                alt="Hide menu"
-                className="g-big-icon g-pointer g-icon-animation"
-              />
-            </button> */}
           </div>
           <div className="g-flex g-horizontal-spbtw-flex g-vertical-center-flex g-flex-gap10">
-            <input type="text" className="x-menu-header-searchBar" placeholder="Search..." />
+            <input
+              type="text"
+              className="x-menu-header-searchBar"
+              placeholder="Search..."
+            />
             <CIconButton
-              onClick={()=>{}}
+              onClick={() => {}}
               icon={icons.lupa}
               alt="magnifying glass icon"
             />
@@ -96,7 +136,7 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
               icon={icons.reload}
               text="Reload"
               classes="g-smallButton"
-              onClick={()=>{}}
+              onClick={handleGetContacts}
             />
             <CTextButton
               icon={icons.plus}
@@ -105,13 +145,15 @@ function ChatMenu({ icons, profilePhoto, contacts, onLogout, onToggleTheme }) {
               onClick={handleShowDiv}
             />
           </div>
-          {showNewDiv && (
-            <XcAddContactGroup />
-          )}
+          {showNewDiv && <XcAddContactGroup />}
         </header>
         <div className="x-menu-contacts g-vertical-scroll g-scroll-shadows g-styled-scrollbar g-flex g-flex-col g-flex-grow1">
           {contacts.map((contact, index) => (
-            <XcContact key={index} name={contact} />
+            <XcContact
+              key={index}
+              name={contact.name}
+              username={contact.username || contact.usernameOrId}
+            />
           ))}
         </div>
         <footer className="x-menu-footer g-flex g-horizontal-spbtw-flex">
@@ -157,13 +199,18 @@ ChatMenu.propTypes = {
     lupa: PropTypes.string.isRequired,
   }).isRequired,
   profilePhoto: PropTypes.string.isRequired,
-  contacts: PropTypes.arrayOf(PropTypes.string).isRequired,
   onLogout: PropTypes.func.isRequired,
   onToggleTheme: PropTypes.func.isRequired,
 };
 
 // Subcomponent per al contenidor del xat
-function ChatContainer({ messages, icons, containerRef, scrollToBottom, checkScroll}) {
+function ChatContainer({
+  messages,
+  icons,
+  containerRef,
+  scrollToBottom,
+  checkScroll,
+}) {
   return (
     <div className="x-chatContainer g-flex g-flex-col" id="x-xatContainer-id">
       <div
@@ -171,15 +218,21 @@ function ChatContainer({ messages, icons, containerRef, scrollToBottom, checkScr
         className="x-chat-messages-container g-flex g-flex-col g-styled-scrollbar"
       >
         {messages.map((msg, index) => (
-          <XcMessage 
+          <XcMessage
             key={index}
-            classes={index % 2 === 0 ? "xc-message-sent" : "xc-message-recieved"}
+            classes={
+              index % 2 === 0 ? "xc-message-sent" : "xc-message-recieved"
+            }
           >
             {msg}
           </XcMessage>
         ))}
       </div>
-      <XcMessageInput sendIcon={icons.send} scrollToBottom={scrollToBottom} checkScroll={checkScroll} />
+      <XcMessageInput
+        sendIcon={icons.send}
+        scrollToBottom={scrollToBottom}
+        checkScroll={checkScroll}
+      />
     </div>
   );
 }
@@ -193,5 +246,5 @@ ChatContainer.propTypes = {
     current: PropTypes.instanceOf(Element),
   }),
   scrollToBottom: PropTypes.func.isRequired,
-  checkScroll: PropTypes.func.isRequired
+  checkScroll: PropTypes.func.isRequired,
 };

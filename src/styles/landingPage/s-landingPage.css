@@ -34,3 +34,9 @@
         left: calc(50% - 30px);
     }
 }
+
+@media screen  and (max-width: 790px) {
+    .lp-body>div{
+        flex-direction: column-reverse;
+    }
+}
