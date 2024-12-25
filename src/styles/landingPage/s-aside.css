@@ -23,9 +23,13 @@
 
 @media screen  and (max-width: 790px) {
     .lp-aside {
-        position: relative;
+        position: relative  ;
         display: block;
         width: 100%;
-        height: 200px;
+        height: 150px;
+    }
+
+    .lp-aside-img{
+        height: 70px;
     }
 }

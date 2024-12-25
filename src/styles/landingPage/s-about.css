@@ -16,3 +16,11 @@
         line-height: 1.5;
     }
 }
+
+@media screen  and (max-width: 790px) {
+    .lp-content-about {
+        & h1 {
+            font-size: 42px;
+        }
+    }
+}

@@ -27,5 +27,12 @@
 @media screen  and (max-width: 790px) {
     .lp-content-title {
         height: 80vh;
+
+        & img {
+            height: 50px;
+        }
+        & h1 {
+            font-size: 60px;
+        }
     }
 }
