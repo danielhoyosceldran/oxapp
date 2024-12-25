@@ -238,6 +238,12 @@ a {
     background-size: calc(var(--s)/4.667) var(--s),var(--s) calc(var(--s)/4.667);
 }
 
+@media screen  and (max-width: 790px) {
+    .g-background-pattern {
+        --s: 65px;
+    }
+}
+
 .g-link-behaviour {
     &:hover {
         text-decoration: underline;
