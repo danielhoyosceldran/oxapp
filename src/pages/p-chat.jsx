@@ -93,20 +93,23 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
       // Filtrar duplicats basant-nos en `username` o `usernameOrId`.
       const uniqueContacts = Array.from(
         new Map(
-          response.contacts.map((contact) => [
+          JSON.parse(response.contacts).map((contact) => [
             contact.username || contact.usernameOrId,
             contact,
           ])
         ).values()
       );
-      console.log(uniqueContacts);
-
+      
       // Actualitzar l'estat dels contactes únics.
       setContacts(uniqueContacts);
     } catch (error) {
       console.error("Error fetching contacts:", error);
     }
   }
+
+  useEffect(() => {
+    handleGetContacts();
+  }, []);
 
   function handleHideDiv() {
     setShowNewDiv(false);

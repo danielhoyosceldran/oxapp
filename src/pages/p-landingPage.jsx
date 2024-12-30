@@ -61,7 +61,7 @@ export default function LandingPage() {
                         <CLpFooterLink icon={icons.mail} text="danhoycel@gmail.com" action={() => copyToclipboard("danhoycel@gmail.com")} />
                     </section>
                     <section className='g-flex g-flex-col g-flex-gap16'>
-                        <h2>Contact</h2>
+                        <h2>Accessibility</h2>
                         <CLpFooterLink icon={icons.theme} text="Change Theme" action={toggleTheme} />
                     </section>
             </footer>
