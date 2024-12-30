@@ -55,7 +55,7 @@ export default function Sign() {
         const data = {
             username: username,
             password: password,
-            ...(accessAction === AccessActions.signUp && { name }),
+            ...(accessAction === AccessActions.SIGN_UP && { name }),
         }
 
         try {
@@ -83,7 +83,6 @@ export default function Sign() {
         { label: "Username", state: username, setState: setUserame, id: ids.username },
         { label: "Password", state: password, setState: setPassword, id: ids.password },
     ];
-    console.log(accessAction === AccessActions.signIn);
     function getForm() {
         return (
             <form onSubmit={handleAccesRequest} className="a-form">

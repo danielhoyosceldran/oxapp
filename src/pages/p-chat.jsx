@@ -8,7 +8,7 @@ import { useTheme } from "../theme/themeProvider.jsx";
 import { CIconButton, CTextButton } from "../components/c-CustomButtons.jsx";
 import { logoutRequest } from "../api_handlers/session.js";
 import { useEffect, useRef, useState } from "react";
-import { getContacts } from "../api_handlers/user_requests.js";
+import { useUser } from "../user/userProvider.jsx";
 
 import PropTypes from "prop-types";
 import XcContact from "../components/chatComponents/xc-contactCard.jsx";
@@ -79,37 +79,12 @@ export default function Chat() {
 
 // Subcomponent per al menú lateral
 export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
+  const { contacts, handleGetContacts } = useUser();
   const [showNewDiv, setShowNewDiv] = useState(false);
-  const [contacts, setContacts] = useState([]);
 
   function handleShowDiv() {
     setShowNewDiv(true);
   }
-
-  async function handleGetContacts() {
-    try {
-      const response = await getContacts();
-
-      // Filtrar duplicats basant-nos en `username` o `usernameOrId`.
-      const uniqueContacts = Array.from(
-        new Map(
-          JSON.parse(response.contacts).map((contact) => [
-            contact.username || contact.usernameOrId,
-            contact,
-          ])
-        ).values()
-      );
-      
-      // Actualitzar l'estat dels contactes únics.
-      setContacts(uniqueContacts);
-    } catch (error) {
-      console.error("Error fetching contacts:", error);
-    }
-  }
-
-  useEffect(() => {
-    handleGetContacts();
-  }, []);
 
   function handleHideDiv() {
     setShowNewDiv(false);
@@ -192,6 +167,7 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
   );
 }
 
+
 ChatMenu.propTypes = {
   icons: PropTypes.shape({
     back: PropTypes.string.isRequired,
@@ -251,3 +227,4 @@ ChatContainer.propTypes = {
   scrollToBottom: PropTypes.func.isRequired,
   checkScroll: PropTypes.func.isRequired,
 };
+

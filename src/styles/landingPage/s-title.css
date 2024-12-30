@@ -19,7 +19,7 @@
 
     & a {
         &:hover h1 {
-            transform: scale(1.04);
+            transform: socale(1.04);
         }
     }
 }
