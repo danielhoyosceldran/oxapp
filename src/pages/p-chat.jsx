@@ -20,24 +20,7 @@ import XcAddContactGroup from "../components/chatComponents/xc-addContactGroup.j
 // Componente principal
 export default function Chat() {
   const { icons, toggleTheme } = useTheme();
-  const containerRef = useRef(null); // Mock data
-  const messages = [
-    "hola",
-    "hey",
-    "ciao",
-    "adeu",
-    "epaa",
-    "hola",
-    "hey",
-    "ciao",
-    "adeu",
-    "epaa",
-    "hola",
-    "hey",
-    "ciao",
-    "adeu",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
-  ]; // Mock data
+  const containerRef = useRef(null);
 
   function scrollToBottom() {
     const container = containerRef.current;
@@ -67,7 +50,6 @@ export default function Chat() {
         onToggleTheme={toggleTheme}
       />
       <ChatContainer
-        messages={messages}
         icons={icons}
         containerRef={containerRef}
         scrollToBottom={scrollToBottom}
@@ -184,12 +166,28 @@ ChatMenu.propTypes = {
 
 // Subcomponent per al contenidor del xat
 function ChatContainer({
-  messages,
   icons,
   containerRef,
   scrollToBottom,
   checkScroll,
 }) {
+  const messages = [
+    "hola",
+    "hey",
+    "ciao",
+    "adeu",
+    "epaa",
+    "hola",
+    "hey",
+    "ciao",
+    "adeu",
+    "epaa",
+    "hola",
+    "hey",
+    "ciao",
+    "adeu",
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
+  ];
   return (
     <div className="x-chatContainer g-flex g-flex-col" id="x-xatContainer-id">
       <div
@@ -217,7 +215,6 @@ function ChatContainer({
 }
 
 ChatContainer.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.string).isRequired,
   icons: PropTypes.shape({
     send: PropTypes.string.isRequired,
   }).isRequired,

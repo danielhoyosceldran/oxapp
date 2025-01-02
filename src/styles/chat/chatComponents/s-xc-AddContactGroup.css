@@ -2,12 +2,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    background-color: #1c1c1e; /* Fons negre */
-    border-radius: 10px; /* Cantonades arrodonides */
-    padding: 20px; /* Espai interior */
+    background-color: var(--base-variant-0);
+    border-radius: 10px;
+    padding: 20px;
     gap: 10px;
-    color: white;
-    font-family: Arial, sans-serif;
+    color: var(--text-color);
   }
   
   .add-title {
@@ -25,38 +24,18 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #333;
-    color: white;
+    background-color: var(--base-variant-1);
+    color: var(--text-color);
     cursor: pointer;
   }
   
   .add-button.selected {
-    background-color: #444; /* Canvia el color quan està seleccionat */
+    background-color: var(--base-variant-2);
   }
   
   .add-input {
-    background-color: #2c2c2e; /* Fons fosc */
-    color: #fff; /* Text blanc */
-    border: 1px solid #444;
-    border-radius: 5px;
-    padding: 10px;
+    background-color: var(--base-variant-1);
+    border-radius: 10px;
+    padding: 4px 10px;
     flex: 1;
   }
-  
-  .add-input::placeholder {
-    color: #666; /* Placeholder gris */
-  }
-  
-  .add-submit {
-    padding: 10px 20px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .add-submit:hover {
-    background-color: #555; /* Lleuger canvi al passar el cursor */
-  }
-  
