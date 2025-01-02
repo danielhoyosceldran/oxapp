@@ -28,7 +28,7 @@ export default function XcContact({
                 />
             </div>
             <div className="xc-contact-content g-flex g-flex-col">
-                <h3>{contactInformation.name}<span> ({contactInformation.username})</span></h3>
+                <h3>{contactInformation.name}<span> (@{contactInformation.username})</span></h3>
                 <div className="g-flex g-horizontal-spbtw-flex g-flex-gap20">
                     <p className="xc-contact-content-lastMessage g-flex-grow1">{lastMessage.text}</p>
                     <p>{lastMessage.time}</p>

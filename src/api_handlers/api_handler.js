@@ -18,7 +18,6 @@ export async function apiRequest({endpoint, options = {}}) {
             const refreshToken = localStorage.getItem("refreshToken");
             if (refreshToken) {
                 // Afegeix el refresh token al header
-                console.log(refreshToken);
                 const refreshTokenRequest = await fetch(API_URL + "/", {
                     method: "POST",
                     credentials: "include",

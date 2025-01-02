@@ -19,7 +19,6 @@ export function UserProvider({ children }) {
   async function handleGetContacts() {
     try {
       const response = await getContacts();
-      console.log(contacts)
       // Filtrar duplicats
       const uniqueContacts = Array.from(
         new Map(

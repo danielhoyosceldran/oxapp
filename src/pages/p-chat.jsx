@@ -200,7 +200,6 @@ function ChatContainer({ icons }) {
   function scrollToBottom() {
     const container = containerRef.current;
     container.scrollTop = container.scrollHeight; // Fa que el scroll comenci al final
-    console.log("Scroll");
   }
 
   function isScrollBottom() {

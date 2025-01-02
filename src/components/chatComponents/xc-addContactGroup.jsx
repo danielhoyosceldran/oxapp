@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { addContact } from "../../api_handlers/user_requests";
 import "../../styles/chat/chatComponents/s-xc-AddContactGroup.css";
 import XcSwitch from "../c-switchButton"; // Import del component Switch
 
@@ -6,8 +7,8 @@ export default function XcAddContactGroup() {
   const [selected, setSelected] = useState("contact");
   const [userId, setUserId] = useState("");
 
-  const handleAddClick = () => {
-    console.log(`Adding ${selected} with ID: ${userId}`);
+  const handleAddClick = async () => {
+    await addContact(userId);
   };
 
   return (

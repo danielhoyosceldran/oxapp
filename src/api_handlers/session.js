@@ -2,7 +2,6 @@ import { API_URL } from "../api_handlers/consts";
 import { apiRequest } from "./api_handler";
 
 export async function logoutRequest() {
-    console.log("Hola")
     const response = await fetch(`${API_URL}/signout`, {
         method: "PUT",
         credentials: "include"
