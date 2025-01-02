@@ -7,7 +7,7 @@ import "../styles/chat/s-chat-container.css";
 import { useTheme } from "../theme/themeProvider.jsx";
 import { CIconButton, CTextButton } from "../components/c-CustomButtons.jsx";
 import { logoutRequest } from "../api_handlers/session.js";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useUser } from "../user/userProvider.jsx";
 
 import PropTypes from "prop-types";
@@ -20,42 +20,50 @@ import XcAddContactGroup from "../components/chatComponents/xc-addContactGroup.j
 // Componente principal
 export default function Chat() {
   const { icons, toggleTheme } = useTheme();
-  const containerRef = useRef(null);
-
-  function scrollToBottom() {
-    const container = containerRef.current;
-    container.scrollTop = container.scrollHeight; // Fa que el scroll comenci al final
-  }
-
-  function isScrollBottom() {
-    const container = containerRef.current;
-    const { scrollTop, scrollHeight, clientHeight } = container;
-    return scrollTop + clientHeight >= scrollHeight;
-  }
-
-  useEffect(() => {
-    scrollToBottom();
-  }, []);
 
   async function handleLogout() {
     await logoutRequest();
   }
 
+  // const ChatUtilsContext = createContext({
+  //   isScrollBottom: isScrollBottom,
+  //   scrollToBottom: scrollToBottom
+  // });
+
+  // function ChatUtilsProvider({children}) {
+  //   return (
+  //       <ChatUtilsProvider.Provider
+  //         value={{
+  //           isScrollBottom,
+  //           scrollToBottom
+  //         }}
+  //       >
+  //         {children}
+  //       </ChatUtilsProvider.Provider>
+  //     );
+  // }
+
+  // ChatUtilsProvider.propTypes = {
+  //   children: PropTypes.any,
+  // };
+
+  // const useChatUtils = () => useContext(ChatUtilsContext);
+
   return (
+    // <ChatUtilsProvider>
+      
+    // </ChatUtilsProvider>
     <div className="x-body g-flex" id="x-body-id">
-      <ChatMenu
-        icons={icons}
-        profilePhoto={default_profile_photo}
-        onLogout={handleLogout}
-        onToggleTheme={toggleTheme}
-      />
-      <ChatContainer
-        icons={icons}
-        containerRef={containerRef}
-        scrollToBottom={scrollToBottom}
-        checkScroll={isScrollBottom}
-      />
-    </div>
+        <ChatMenu
+          icons={icons}
+          profilePhoto={default_profile_photo}
+          onLogout={handleLogout}
+          onToggleTheme={toggleTheme}
+        />
+        <ChatContainer
+          icons={icons}
+        />
+      </div>
   );
 }
 
@@ -167,7 +175,7 @@ ChatMenu.propTypes = {
 };
 
 // Subcomponent per al contenidor del xat
-function ChatContainer({ icons, containerRef, scrollToBottom, checkScroll }) {
+function ChatContainer({ icons }) {
   const { contactSelected } = useUser();
   var messages = [
     "hola",
@@ -186,7 +194,27 @@ function ChatContainer({ icons, containerRef, scrollToBottom, checkScroll }) {
     "adeu",
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
   ];
-  //messages = [];
+
+  const containerRef = useRef(null);
+
+  function scrollToBottom() {
+    const container = containerRef.current;
+    container.scrollTop = container.scrollHeight; // Fa que el scroll comenci al final
+    console.log("Scroll");
+  }
+
+  function isScrollBottom() {
+    const container = containerRef.current;
+    const { scrollTop, scrollHeight, clientHeight } = container;
+    return scrollTop + clientHeight >= scrollHeight;
+  }
+
+  useEffect(() => {
+    if (contactSelected) {
+      scrollToBottom();
+    }
+  }, [contactSelected]);
+
   return (
     <div className="x-chatContainer g-flex g-flex-col" id="x-xatContainer-id">
       <div
@@ -230,7 +258,7 @@ function ChatContainer({ icons, containerRef, scrollToBottom, checkScroll }) {
       {contactSelected && <XcMessageInput
         sendIcon={icons.send}
         scrollToBottom={scrollToBottom}
-        checkScroll={checkScroll}
+        checkScroll={isScrollBottom}
       />}
     </div>
   );
@@ -240,9 +268,4 @@ ChatContainer.propTypes = {
   icons: PropTypes.shape({
     send: PropTypes.string.isRequired,
   }).isRequired,
-  containerRef: PropTypes.shape({
-    current: PropTypes.instanceOf(Element),
-  }),
-  scrollToBottom: PropTypes.func.isRequired,
-  checkScroll: PropTypes.func.isRequired,
 };
