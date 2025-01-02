@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import default_profile_photo from "../../assets/profile_photos/default.png";
 import "../../styles/chat/chatComponents/s-xc-contactCard.css";
+import { useUser } from "../../user/userProvider";
 
 export default function XcContact({
     contactInformation = {
@@ -13,11 +14,12 @@ export default function XcContact({
         time: ""
     }
 }) {
-    const ho = () => {
-        console.log("hola");
+    const {setContactSelected} = useUser();
+    function updateSelectedContact() {
+        setContactSelected(contactInformation.username);
     }
     return(
-        <div className="xc-contact-container g-flex g-flex-gap16 g-pointer" onClick={ho}>
+        <div className="xc-contact-container g-flex g-flex-gap16 g-pointer" onClick={updateSelectedContact}>
             <div className="g-flex g-horizontal-center-flex g-vertical-center-flex">
                 <img
                     src={contactInformation.profilePhoto ? contactInformation.profilePhoto : default_profile_photo}
@@ -45,5 +47,5 @@ XcContact.propTypes = {
     lastMessage: PropTypes.shape({
         text: PropTypes.string,
         time: PropTypes.string
-    })
+    }),
 };

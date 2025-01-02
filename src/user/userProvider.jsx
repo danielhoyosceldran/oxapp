@@ -5,6 +5,7 @@ import { getContacts } from "../api_handlers/user_requests.js"; // Importa la fu
 export const UserContext = createContext({
   username: "unknown",
   contacts: [],
+  contactSelected: undefined,
   setUsername: () => {},
   handleGetContacts: () => Promise.resolve(),
 });
@@ -12,11 +13,13 @@ export const UserContext = createContext({
 export function UserProvider({ children }) {
   const [username, setUsername] = useState("unknown");
   const [contacts, setContacts] = useState([]);
+  const [contactSelected, setContactSelected] = useState(undefined);
 
   // Funció per recuperar els contactes
   async function handleGetContacts() {
     try {
       const response = await getContacts();
+      console.log(contacts)
       // Filtrar duplicats
       const uniqueContacts = Array.from(
         new Map(
@@ -43,6 +46,8 @@ export function UserProvider({ children }) {
       value={{
         username,
         contacts,
+        contactSelected,
+        setContactSelected,
         setUsername,
         handleGetContacts,
       }}

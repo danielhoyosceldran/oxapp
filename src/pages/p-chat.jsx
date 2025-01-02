@@ -110,9 +110,12 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
         <div className="x-menu-contacts g-vertical-scroll g-scroll-shadows g-styled-scrollbar g-flex g-flex-col g-flex-grow1">
           {contacts.map((contact, index) => (
             <XcContact
+              contactInformation={{
+                profilePhoto: undefined,
+                name: contact.name,
+                username: contact.username,
+              }}
               key={index}
-              name={contact.name}
-              username={contact.username || contact.usernameOrId}
             />
           ))}
         </div>
@@ -149,7 +152,6 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
   );
 }
 
-
 ChatMenu.propTypes = {
   icons: PropTypes.shape({
     back: PropTypes.string.isRequired,
@@ -165,12 +167,8 @@ ChatMenu.propTypes = {
 };
 
 // Subcomponent per al contenidor del xat
-function ChatContainer({
-  icons,
-  containerRef,
-  scrollToBottom,
-  checkScroll,
-}) {
+function ChatContainer({ icons, containerRef, scrollToBottom, checkScroll }) {
+  const { contactSelected } = useUser();
   var messages = [
     "hola",
     "hey",
@@ -195,17 +193,40 @@ function ChatContainer({
         ref={containerRef}
         className="x-chat-messages-container g-flex g-flex-col g-styled-scrollbar"
       >
-        {messages.length > 0 ? messages.map((msg, index) => (
-          <XcMessage
-            key={index}
-            classes={
-              index % 2 === 0 ? "xc-message-sent" : "xc-message-recieved"
-            }
+        {contactSelected === undefined ? (
+          <div
+            className="g-flex g-horizontal-center-flex g-vertical-center-flex"
+            style={{
+              height: "100%",
+              color: "var(--base-variant-neutral)",
+              paddingTop: "100px",
+            }}
           >
-            {msg}
-          </XcMessage>
-        ))
-        : <div className="g-flex g-horizontal-center-flex g-vertical-center-flex" style={{height: "100%", color: "var(--base-variant-neutral)", paddingTop: "100px"}}>No messages</div>}
+            No contact selected
+          </div>
+        ) : messages.length > 0 ? (
+          messages.map((msg, index) => (
+            <XcMessage
+              key={index}
+              classes={
+                index % 2 === 0 ? "xc-message-sent" : "xc-message-recieved"
+              }
+            >
+              {msg}
+            </XcMessage>
+          ))
+        ) : (
+          <div
+            className="g-flex g-horizontal-center-flex g-vertical-center-flex"
+            style={{
+              height: "100%",
+              color: "var(--base-variant-neutral)",
+              paddingTop: "100px",
+            }}
+          >
+            No messages
+          </div>
+        )}
       </div>
       <XcMessageInput
         sendIcon={icons.send}
@@ -226,4 +247,3 @@ ChatContainer.propTypes = {
   scrollToBottom: PropTypes.func.isRequired,
   checkScroll: PropTypes.func.isRequired,
 };
-
