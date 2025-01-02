@@ -69,7 +69,7 @@ export default function Chat() {
 
 // Subcomponent per al menú lateral
 export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
-  const { contacts, handleGetContacts } = useUser();
+  const { contacts, handleGetContacts, username } = useUser();
   const [showNewDiv, setShowNewDiv] = useState(false);
 
   function handleShowDiv() {
@@ -130,7 +130,7 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
         <footer className="x-menu-footer g-flex g-horizontal-spbtw-flex">
           <div className="x-menu-footer-profile g-flex g-vertical-center-flex g-horizontal-center-flex">
             <img src={profilePhoto} alt="Profile" />
-            <h3>username</h3>
+            <h3>{username}</h3>
           </div>
           <div className="x-menu-footer-actions g-flex g-vertical-center-flex g-horizontal-center-flex">
             <button

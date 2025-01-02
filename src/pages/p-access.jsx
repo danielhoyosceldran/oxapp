@@ -83,6 +83,7 @@ export default function Sign() {
         { label: "Username", state: username, setState: setUserame, id: ids.username },
         { label: "Password", state: password, setState: setPassword, id: ids.password },
     ];
+
     function getForm() {
         return (
             <form onSubmit={handleAccesRequest} className="a-form">
@@ -98,6 +99,7 @@ export default function Sign() {
                             autoComplete="off"
                             value={state}
                             onChange={(e) => setState(e.target.value)}
+                            autoFocus={label === "Username"}
                             id={id}
                         />
                     </div>

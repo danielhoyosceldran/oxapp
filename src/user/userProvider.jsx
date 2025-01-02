@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useState, useEffect } from "react";
 import { getContacts } from "../api_handlers/user_requests.js"; // Importa la funció d'API
+import { getCookieValue } from "../utils/utils.jsx";
 
 export const UserContext = createContext({
   username: "unknown",
@@ -11,7 +12,7 @@ export const UserContext = createContext({
 });
 
 export function UserProvider({ children }) {
-  const [username, setUsername] = useState("unknown");
+  const [username, setUsername] = useState(getCookieValue("username"));
   const [contacts, setContacts] = useState([]);
   const [contactSelected, setContactSelected] = useState(undefined);
 
