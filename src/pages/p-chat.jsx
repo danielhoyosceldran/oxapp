@@ -171,7 +171,7 @@ function ChatContainer({
   scrollToBottom,
   checkScroll,
 }) {
-  const messages = [
+  var messages = [
     "hola",
     "hey",
     "ciao",
@@ -188,13 +188,14 @@ function ChatContainer({
     "adeu",
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
   ];
+  //messages = [];
   return (
     <div className="x-chatContainer g-flex g-flex-col" id="x-xatContainer-id">
       <div
         ref={containerRef}
         className="x-chat-messages-container g-flex g-flex-col g-styled-scrollbar"
       >
-        {messages.map((msg, index) => (
+        {messages.length > 0 ? messages.map((msg, index) => (
           <XcMessage
             key={index}
             classes={
@@ -203,7 +204,8 @@ function ChatContainer({
           >
             {msg}
           </XcMessage>
-        ))}
+        ))
+        : <div className="g-flex g-horizontal-center-flex g-vertical-center-flex" style={{height: "100%", color: "var(--base-variant-neutral)", paddingTop: "100px"}}>No messages</div>}
       </div>
       <XcMessageInput
         sendIcon={icons.send}
