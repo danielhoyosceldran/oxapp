@@ -220,19 +220,18 @@ function ChatContainer({ icons, containerRef, scrollToBottom, checkScroll }) {
             className="g-flex g-horizontal-center-flex g-vertical-center-flex"
             style={{
               height: "100%",
-              color: "var(--base-variant-neutral)",
-              paddingTop: "100px",
+              color: "var(--base-variant-neutral)"
             }}
           >
             No messages
           </div>
         )}
       </div>
-      <XcMessageInput
+      {contactSelected && <XcMessageInput
         sendIcon={icons.send}
         scrollToBottom={scrollToBottom}
         checkScroll={checkScroll}
-      />
+      />}
     </div>
   );
 }
