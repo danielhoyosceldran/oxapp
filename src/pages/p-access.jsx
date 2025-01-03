@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthProvider";
 import { useState, useId } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { sha256 } from "../utils/utils";
 
 import { sendAccessRequest } from "../api_handlers/session";
 import { useTheme } from "../theme/themeProvider";
@@ -50,14 +51,14 @@ export default function Sign() {
     const [isLoading, setIsLoading] = useState(false);
     
     async function handleAccesRequest(event) {
-        event.preventDefault();
+        event.preventDefault(); // ha de ser la primera línea
+        const passwordHashed = await sha256(password);
         setIsLoading(true);
         const data = {
             username: username,
-            password: password,
+            password: passwordHashed,
             ...(accessAction === AccessActions.SIGN_UP && { name }),
         }
-
         try {
             const response = await sendAccessRequest(accessAction.toLocaleLowerCase(), data);
             const responseData = await response.json();
@@ -98,6 +99,7 @@ export default function Sign() {
                             type={label === "Password" ? "password" : "text"}
                             autoComplete="off"
                             value={state}
+                            required={true}
                             onChange={(e) => setState(e.target.value)}
                             autoFocus={label === "Username"}
                             id={id}
