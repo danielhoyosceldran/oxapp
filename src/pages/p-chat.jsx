@@ -111,7 +111,7 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
               onClick={handleShowDiv}
             />
           </div>
-          {showNewDiv && <XcAddContactGroup />}
+          {showNewDiv && <XcAddContactGroup callback={handleHideDiv} />}
         </header>
         <div className="x-menu-contacts g-vertical-scroll g-scroll-shadows g-styled-scrollbar g-flex g-flex-col g-flex-grow1">
           {contacts.map((contact, index) => (

@@ -2,6 +2,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 542px;
+    transform: translate(-50%, -50%);
     background-color: var(--base-variant-0);
     border-radius: 10px;
     padding: 20px;
