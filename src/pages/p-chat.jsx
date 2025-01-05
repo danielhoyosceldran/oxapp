@@ -7,7 +7,7 @@ import "../styles/chat/s-chat-container.css";
 import { useTheme } from "../theme/themeProvider.jsx";
 import { CIconButton, CTextButton } from "../components/c-CustomButtons.jsx";
 import { logoutRequest } from "../api_handlers/session.js";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useUser } from "../user/userProvider.jsx";
 
 import PropTypes from "prop-types";
@@ -51,19 +51,17 @@ export default function Chat() {
 
   return (
     // <ChatUtilsProvider>
-      
+
     // </ChatUtilsProvider>
     <div className="x-body g-flex" id="x-body-id">
-        <ChatMenu
-          icons={icons}
-          profilePhoto={default_profile_photo}
-          onLogout={handleLogout}
-          onToggleTheme={toggleTheme}
-        />
-        <ChatContainer
-          icons={icons}
-        />
-      </div>
+      <ChatMenu
+        icons={icons}
+        profilePhoto={default_profile_photo}
+        onLogout={handleLogout}
+        onToggleTheme={toggleTheme}
+      />
+      <ChatContainer icons={icons} />
+    </div>
   );
 }
 
@@ -176,7 +174,7 @@ ChatMenu.propTypes = {
 
 // Subcomponent per al contenidor del xat
 function ChatContainer({ icons }) {
-  const { contactSelected } = useUser();
+  const { contactSelected, setContactSelected } = useUser();
   var messages = [
     "hola",
     "hey",
@@ -247,18 +245,28 @@ function ChatContainer({ icons }) {
             className="g-flex g-horizontal-center-flex g-vertical-center-flex"
             style={{
               height: "100%",
-              color: "var(--base-variant-neutral)"
+              color: "var(--base-variant-neutral)",
             }}
           >
             No messages
           </div>
         )}
       </div>
-      {contactSelected && <XcMessageInput
-        sendIcon={icons.send}
-        scrollToBottom={scrollToBottom}
-        checkScroll={isScrollBottom}
-      />}
+      {contactSelected && (
+        <>
+          <CIconButton
+            classes="x-closeChatWindow"
+            icon={icons.cross}
+            alt="icon cross"
+            onClick={() => {setContactSelected(undefined)}}
+          />
+          <XcMessageInput
+            sendIcon={icons.send}
+            scrollToBottom={scrollToBottom}
+            checkScroll={isScrollBottom}
+          />
+        </>
+      )}
     </div>
   );
 }
@@ -266,5 +274,6 @@ function ChatContainer({ icons }) {
 ChatContainer.propTypes = {
   icons: PropTypes.shape({
     send: PropTypes.string.isRequired,
+    cross: PropTypes.string.isRequired,
   }).isRequired,
 };

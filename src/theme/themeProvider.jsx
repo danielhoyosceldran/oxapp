@@ -22,6 +22,8 @@ import Github_dm from "../assets/icons/github-dm.svg";
 import Github_lm from "../assets/icons/github-lm.svg";
 import MessageTail_dm from "../assets/utils/message_tail_dm.svg";
 import MessageTail_lm from "../assets/utils/message_tail_lm.svg";
+import Cross_dm from "../assets/icons/cross-dm.svg";
+import Cross_lm from "../assets/icons/cross-lm.svg";
 
 import Logo from "../assets/logo/transparent_logo.svg";
 import Logo_gif from "../assets/logo/transparent_logo_noCaret.svg";
@@ -34,6 +36,7 @@ const icons_lm = {
     theme: Moon,
     exit: Exit_lm || Exit_dm,
     plus: Plus_lm || Plus_dm,
+    cross: Cross_lm || Cross_dm,
     back: Back_lm || Back_dm,
     send: Send_lm || Send_dm,
     mail: Mail_lm || Mail_dm,
@@ -51,6 +54,7 @@ const icons_dm = {
     theme: Sun,
     exit: Exit_dm || Exit_lm,
     plus: Plus_dm || Plus_lm,
+    cross: Cross_dm || Cross_lm,
     back: Back_dm || Back_lm,
     send: Send_dm || Send_lm,
     mail: Mail_dm || Mail_lm,
