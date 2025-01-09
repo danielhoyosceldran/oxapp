@@ -35,6 +35,7 @@ export default function XcMessageInput({sendIcon, scrollToBottom, checkScroll}) 
             <div>
                 <img src={icons.messageTail} className="xc-message-tail" alt="message input tail" />
                 <textarea
+                    autoFocus={true}
                     ref={textareaRef}
                     name="textToSend"
                     className="xc-messageInput"

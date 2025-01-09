@@ -1,9 +1,16 @@
+.xc-contact-deleteButton {
+    display: none;
+}
+
 .xc-contact-container{
     width: 100%;
     padding: 12px 25px;
 
     &:hover {
         background-color: var(--base-variant-1);
+        .xc-contact-deleteButton {
+            display: block;
+        }
     }
 }
 

@@ -42,15 +42,15 @@ socket.onclose = function(event) {
 function act(event) {
   event.preventDefault(); // per a no recarregar la pàgina la fer submit
 
-  var input = document.getElementById("fmessage");
-  socket.send(input.value);
-  input.value = "";
-  updateCounter();
+  // var input = document.getElementById("fmessage");
+  // socket.send(input.value);
+  // input.value = "";
+  // updateCounter();
 }
 
-function updateCounter() {
-  var input = document.getElementById("fmessage");
-  var messageLenght = input.value.length;
-  var counter = document.getElementById("counter");
-  counter.innerText = messageLenght;
-}
+// function updateCounter() {
+//   // var input = document.getElementById("fmessage");
+//   // var messageLenght = input.value.length;
+//   // var counter = document.getElementById("counter");
+//   // counter.innerText = messageLenght;
+// }

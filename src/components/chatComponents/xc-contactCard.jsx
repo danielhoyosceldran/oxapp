@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import default_profile_photo from "../../assets/profile_photos/default.png";
 import "../../styles/chat/chatComponents/s-xc-contactCard.css";
 import { useUser } from "../../user/userProvider";
+import { CIconButton } from "../c-CustomButtons";
+import { useTheme } from "../../theme/themeProvider";
 
 export default function XcContact({
     contactInformation = {
@@ -14,12 +16,14 @@ export default function XcContact({
         time: ""
     }
 }) {
+    const {icons} = useTheme();
     const {setContactSelected} = useUser();
+    
     function updateSelectedContact() {
         setContactSelected(contactInformation.username);
     }
     return(
-        <div className="xc-contact-container g-flex g-flex-gap16 g-pointer" onClick={updateSelectedContact}>
+        <div className="xc-contact-container g-flex g-vertical-center-flex g-flex-gap16 g-pointer" onClick={updateSelectedContact}>
             <div className="g-flex g-horizontal-center-flex g-vertical-center-flex">
                 <img
                     src={contactInformation.profilePhoto ? contactInformation.profilePhoto : default_profile_photo}
@@ -33,6 +37,14 @@ export default function XcContact({
                     <p className="xc-contact-content-lastMessage g-flex-grow1">{lastMessage.text}</p>
                     <p>{lastMessage.time}</p>
                 </div>
+            </div>
+            <div className="xc-contact-deleteButton">
+                <CIconButton
+                    icon={icons.trash}
+                    alt="trash icon"
+                    iconSizeClass="g-icon"
+                    onClick={() => {}}
+                />
             </div>
         </div>
     );

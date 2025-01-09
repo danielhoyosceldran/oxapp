@@ -24,6 +24,8 @@ import MessageTail_dm from "../assets/utils/message_tail_dm.svg";
 import MessageTail_lm from "../assets/utils/message_tail_lm.svg";
 import Cross_dm from "../assets/icons/cross-dm.svg";
 import Cross_lm from "../assets/icons/cross-lm.svg";
+import Trash_dm from "../assets/icons/trash-dm.svg";
+import Trash_lm from "../assets/icons/trash-lm.svg";
 
 import Logo from "../assets/logo/transparent_logo.svg";
 import Logo_gif from "../assets/logo/transparent_logo_noCaret.svg";
@@ -42,6 +44,7 @@ const icons_lm = {
     mail: Mail_lm || Mail_dm,
     next: Next_lm || Next_dm,
     lupa: Lupa_lm || Lupa_dm,
+    trash: Trash_lm || Trash_dm,
     messageTail: MessageTail_lm || MessageTail_dm,
     reload: Reload_lm || Reload_dm,
     github: Github_lm || Github_dm,
@@ -60,6 +63,7 @@ const icons_dm = {
     mail: Mail_dm || Mail_lm,
     next: Next_dm || Next_lm,
     lupa: Lupa_dm || Lupa_lm,
+    trash: Trash_dm || Trash_lm,
     messageTail: MessageTail_dm || MessageTail_lm,
     reload: Reload_dm || Reload_lm,
     github: Github_dm || Github_lm,
