@@ -15,7 +15,7 @@ export function CIconButton({icon, alt, iconSizeClass="g-icon", onClick, classes
 
 CIconButton.propTypes = {
     icon: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
+    alt: PropTypes.string,
     iconSizeClass: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     classes: PropTypes.string

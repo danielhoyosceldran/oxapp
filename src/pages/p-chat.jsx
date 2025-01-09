@@ -16,6 +16,7 @@ import XcMessage from "../components/chatComponents/xc-message.jsx";
 import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import default_profile_photo from "../assets/profile_photos/default.png";
 import XcAddContactGroup from "../components/chatComponents/xc-addContactGroup.jsx";
+import { useWebSockets } from "../messages_connection/ws_access.jsx";
 
 // Componente principal
 export default function Chat() {
@@ -24,30 +25,6 @@ export default function Chat() {
   async function handleLogout() {
     await logoutRequest();
   }
-
-  // const ChatUtilsContext = createContext({
-  //   isScrollBottom: isScrollBottom,
-  //   scrollToBottom: scrollToBottom
-  // });
-
-  // function ChatUtilsProvider({children}) {
-  //   return (
-  //       <ChatUtilsProvider.Provider
-  //         value={{
-  //           isScrollBottom,
-  //           scrollToBottom
-  //         }}
-  //       >
-  //         {children}
-  //       </ChatUtilsProvider.Provider>
-  //     );
-  // }
-
-  // ChatUtilsProvider.propTypes = {
-  //   children: PropTypes.any,
-  // };
-
-  // const useChatUtils = () => useContext(ChatUtilsContext);
 
   return (
     // <ChatUtilsProvider>
@@ -84,6 +61,7 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
         <header className="x-menu-header g-flex g-flex-col g-flex-gap20">
           <div className="x-menu-header-firstRow g-vertical-center-flex g-flex g-horizontal-spbtw-flex">
             <h1>Contacts</h1>
+            <span id="x-menu-onlineBanner"></span>
           </div>
           <div className="g-flex g-horizontal-spbtw-flex g-vertical-center-flex g-flex-gap10">
             <input
@@ -175,6 +153,10 @@ ChatMenu.propTypes = {
 // Subcomponent per al contenidor del xat
 function ChatContainer({ icons }) {
   const { contactSelected, setContactSelected } = useUser();
+  const textareaRef = useRef(null);
+
+  const { sendMessage } = useWebSockets();
+
   var messages = [
     "hola",
     "hey",
@@ -264,6 +246,8 @@ function ChatContainer({ icons }) {
             sendIcon={icons.send}
             scrollToBottom={scrollToBottom}
             checkScroll={isScrollBottom}
+            textareaRef={textareaRef}
+            onSubmit={sendMessage}
           />
         </>
       )}

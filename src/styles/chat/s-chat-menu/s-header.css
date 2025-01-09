@@ -18,3 +18,19 @@
     padding: 6px;
     border-radius: 8px;
 }
+
+#x-menu-onlineBanner {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+    
+}
+
+.online {
+    background-color: var(--success-color);
+}
+
+.offline {
+    background-color: var(--error-color);
+}

@@ -22,6 +22,8 @@ html {
     --transparency-color: rgba(0, 0, 0, .1);
     --transparency-color-variant: rgba(0, 0, 0, .3);
 
+    --success-color: #A4FF9C;
+    --success-foreground-color: #277529;
     --error-color: #ff9b9b;
     --error-foreground-color: #752727;
 }

@@ -1,10 +1,9 @@
-import { useRef, useEffect, useId } from "react";
+import { useEffect, useId } from "react";
 import { useTheme } from "../../theme/themeProvider";
 
 import "../../styles/chat/chatComponents/s-xc-messageInput.css";
 
-export default function XcMessageInput({sendIcon, scrollToBottom, checkScroll}) {
-    const textareaRef = useRef(null);
+export default function XcMessageInput({sendIcon, scrollToBottom, checkScroll, onSubmit, textareaRef}) {
     const xc_messageInput_id = useId();
     useEffect(() => {
         const textarea = textareaRef.current;
@@ -30,6 +29,10 @@ export default function XcMessageInput({sendIcon, scrollToBottom, checkScroll}) 
 
     const { icons } = useTheme();
 
+    function handleSend() {
+        onSubmit("hola");
+    }
+
     return (
         <div className="xc-messageInput-contiainer g-flex g-horizontal-center-flex g-flex-gap20">
             <div>
@@ -44,7 +47,10 @@ export default function XcMessageInput({sendIcon, scrollToBottom, checkScroll}) 
                     rows="1"
                 ></textarea>
             </div>
-            <button className="g-pointer xc-sendButton g-flex g-horizontal-center-flex g-vertical-center-flex">
+            <button
+                className="g-pointer xc-sendButton g-flex g-horizontal-center-flex g-vertical-center-flex"
+                onClick={handleSend}
+            >
                 <img src={sendIcon} alt="Send" />
             </button>
         </div>
