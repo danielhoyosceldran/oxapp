@@ -1,6 +1,7 @@
 import { useRef, useEffect, useId } from "react";
 import { useTheme } from "../../theme/themeProvider";
 import PropTypes from "prop-types";
+import { useWebSockets } from "../../messages_connection/ws_access";
 
 import "../../styles/chat/chatComponents/s-xc-messageInput.css";
 
@@ -8,10 +9,10 @@ export default function XcMessageInput({
   sendIcon,
   scrollToBottom,
   checkScroll,
-  onSubmit,
 }) {
   const xc_messageInput_id = useId();
   const textareaRef = useRef(null);
+  const { messages, setMessages, sendMessage } = useWebSockets();
   useEffect(() => {
     const textarea = textareaRef.current;
 
@@ -44,10 +45,24 @@ export default function XcMessageInput({
 
   const { icons } = useTheme();
 
+  function getJsonToSend() {
+    const jsonToSend = {
+        type: "text",
+        from: "",
+        to: "",
+        text: textareaRef.current.value,
+    };
+    return JSON.stringify(jsonToSend);
+  }
+
   function handleSend() {
-    onSubmit("hola");
+    sendMessage(getJsonToSend());
     textareaRef.current.value = "";
   }
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div className="xc-messageInput-contiainer g-flex g-horizontal-center-flex g-flex-gap20">
@@ -81,5 +96,4 @@ XcMessageInput.propTypes = {
   sendIcon: PropTypes.string.isRequired,
   scrollToBottom: PropTypes.func,
   checkScroll: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired,
 };

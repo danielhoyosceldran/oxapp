@@ -5,8 +5,8 @@ import LandingPage from './pages/p-landingPage.jsx';
 import { UserProvider } from './user/userProvider.jsx';
 
 function App() {
-  const auth = useAuth();
-  return auth.isAuthenticated
+  const {isAuthenticated} = useAuth();
+  return isAuthenticated
     ? <UserProvider><Chat /></UserProvider>
     : <LandingPage />;
 }

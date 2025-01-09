@@ -1,8 +1,26 @@
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
+export const WebSocketContext = createContext({
+  messages: [],
+  sendMessage: () => {},
+});
 
-export function useWebSockets() {
+
+export function WebSocketsProvider( { children }) {
   const socket = useRef(null);
+  const [messages, setMessages] = useState(["hola",
+    "hey",
+    "ciao",
+    "ciao",
+    "adeu",
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
+  ]);
+
   useEffect(() => {
+    // load messages
+    // TODO: fetch messages from server
+
+    // web sockets
     socket.current = new WebSocket("ws://localhost:5000");
 
     socket.current.onopen = () => {
@@ -13,11 +31,10 @@ export function useWebSockets() {
     };
 
     socket.current.onmessage = (event) => {
-      console.log("Missatge del servidor: " + event.data);
+      setMessages((prevMessages) => [...prevMessages, event.data]);
+      console.log("Missatge rebut:", event.data);
     };
-
-    function updateMessageContainer() {}
-
+    
     socket.current.onclose = () => {
       console.log("Connexió tancada");
       var onlineBanner = document.getElementById("x-menu-onlineBanner");
@@ -25,10 +42,14 @@ export function useWebSockets() {
       onlineBanner.classList.add("offline");
     };
 
-    return () => {
+    if (socket.current?.readyState === WebSocket.OPEN) {
       socket.current.close();
-    };
+    }
   }, []);
+
+  const addMessage = (message) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  };
 
   const sendMessage = (message) => {
     if (socket.current?.readyState === WebSocket.OPEN) {
@@ -38,6 +59,15 @@ export function useWebSockets() {
     }
   };
 
-  return { sendMessage };
-  
+  return (
+    <WebSocketContext.Provider value={{ messages, sendMessage, addMessage }}>
+      {children}
+    </WebSocketContext.Provider>
+  );
 }
+
+WebSocketsProvider.propTypes = {
+  children: PropTypes.any,
+};
+
+export const useWebSockets = () => useContext(WebSocketContext);

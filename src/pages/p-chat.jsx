@@ -16,7 +16,7 @@ import XcMessage from "../components/chatComponents/xc-message.jsx";
 import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import default_profile_photo from "../assets/profile_photos/default.png";
 import XcAddContactGroup from "../components/chatComponents/xc-addContactGroup.jsx";
-import { useWebSockets } from "../messages_connection/ws_access.jsx";
+import { useWebSockets, WebSocketsProvider } from "../messages_connection/ws_access.jsx";
 
 // Componente principal
 export default function Chat() {
@@ -27,9 +27,6 @@ export default function Chat() {
   }
 
   return (
-    // <ChatUtilsProvider>
-
-    // </ChatUtilsProvider>
     <div className="x-body g-flex" id="x-body-id">
       <ChatMenu
         icons={icons}
@@ -37,7 +34,9 @@ export default function Chat() {
         onLogout={handleLogout}
         onToggleTheme={toggleTheme}
       />
-      <ChatContainer icons={icons} />
+      <WebSocketsProvider>
+        <ChatContainer icons={icons} />
+      </WebSocketsProvider>
     </div>
   );
 }
@@ -153,27 +152,7 @@ ChatMenu.propTypes = {
 // Subcomponent per al contenidor del xat
 function ChatContainer({ icons }) {
   const { contactSelected, setContactSelected } = useUser();
-  const textareaRef = useRef(null);
-
-  const { sendMessage } = useWebSockets();
-
-  var messages = [
-    "hola",
-    "hey",
-    "ciao",
-    "adeu",
-    "epaa",
-    "hola",
-    "hey",
-    "ciao",
-    "adeu",
-    "epaa",
-    "hola",
-    "hey",
-    "ciao",
-    "adeu",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
-  ];
+  const { messages } = useWebSockets();
 
   const containerRef = useRef(null);
 
@@ -246,8 +225,6 @@ function ChatContainer({ icons }) {
             sendIcon={icons.send}
             scrollToBottom={scrollToBottom}
             checkScroll={isScrollBottom}
-            textareaRef={textareaRef}
-            onSubmit={sendMessage}
           />
         </>
       )}
