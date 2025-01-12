@@ -16,6 +16,10 @@ export function UserProvider({ children }) {
   const [contacts, setContacts] = useState([]);
   const [contactSelected, setContactSelected] = useState(undefined);
 
+  useEffect(() => {
+    console.log(contactSelected);
+  }, [contactSelected]);
+
   // Funció per recuperar els contactes
   async function handleGetContacts() {
     try {

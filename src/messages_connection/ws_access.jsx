@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import { useUser } from "../user/userProvider";
 export const WebSocketContext = createContext({
   messages: [],
   sendMessage: () => {},
@@ -16,12 +17,14 @@ export function WebSocketsProvider( { children }) {
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five.",
   ]);
 
+  const { username } = useUser();
+
   useEffect(() => {
     // load messages
     // TODO: fetch messages from server
 
     // web sockets
-    socket.current = new WebSocket("ws://localhost:5000");
+    socket.current = new WebSocket("ws://localhost:5000?username="+username);
 
     socket.current.onopen = () => {
       console.log("Connexió oberta");
@@ -32,7 +35,7 @@ export function WebSocketsProvider( { children }) {
 
     socket.current.onmessage = (event) => {
       setMessages((prevMessages) => [...prevMessages, event.data]);
-      console.log("Missatge rebut:", event.data);
+      // console.log("Missatge rebut:", event.data);
     };
     
     socket.current.onclose = () => {
@@ -52,11 +55,14 @@ export function WebSocketsProvider( { children }) {
   };
 
   const sendMessage = (message) => {
+    console.log("sendMessage - pre" + message);
     if (socket.current?.readyState === WebSocket.OPEN) {
       socket.current.send(message);
     } else {
       console.error("Web socket connection is not opened.");
     }
+    console.log("sendmessage - post" + message);
+
   };
 
   return (

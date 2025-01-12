@@ -4,6 +4,7 @@ import "../../styles/chat/chatComponents/s-xc-contactCard.css";
 import { useUser } from "../../user/userProvider";
 import { CIconButton } from "../c-CustomButtons";
 import { useTheme } from "../../theme/themeProvider";
+import { useEffect } from "react";
 
 export default function XcContact({
     contactInformation = {

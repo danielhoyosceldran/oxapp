@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useWebSockets } from "../../messages_connection/ws_access";
 
 import "../../styles/chat/chatComponents/s-xc-messageInput.css";
+import { useUser } from "../../user/userProvider";
 
 export default function XcMessageInput({
   sendIcon,
@@ -12,7 +13,11 @@ export default function XcMessageInput({
 }) {
   const xc_messageInput_id = useId();
   const textareaRef = useRef(null);
-  const { messages, setMessages, sendMessage } = useWebSockets();
+  const { username, contactSelected } = useUser();
+  const { messages, sendMessage } = useWebSockets();
+  const contactSelectedRef = useRef(contactSelected);
+  const { icons } = useTheme();
+
   useEffect(() => {
     const textarea = textareaRef.current;
 
@@ -43,13 +48,19 @@ export default function XcMessageInput({
     };
   }, []);
 
-  const { icons } = useTheme();
+  useEffect(() => {
+    contactSelectedRef.current = contactSelected;
+  }, [contactSelected]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   function getJsonToSend() {
     const jsonToSend = {
         type: "text",
-        from: "",
-        to: "",
+        from: username,
+        to: contactSelectedRef.current,
         text: textareaRef.current.value,
     };
     return JSON.stringify(jsonToSend);
@@ -59,10 +70,6 @@ export default function XcMessageInput({
     sendMessage(getJsonToSend());
     textareaRef.current.value = "";
   }
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   return (
     <div className="xc-messageInput-contiainer g-flex g-horizontal-center-flex g-flex-gap20">
