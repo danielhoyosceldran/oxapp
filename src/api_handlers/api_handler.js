@@ -2,6 +2,7 @@ import { API_URL } from "./consts";
 
 export async function apiRequest({endpoint, options = {}}) {
     try {
+        console.log("try 1");
         const defaultOptions = {
             method: "GET",
             credentials: "include",
@@ -13,8 +14,10 @@ export async function apiRequest({endpoint, options = {}}) {
         const finalOptions = { ...defaultOptions, ...options };
         
         const response = await fetch(API_URL + endpoint, finalOptions);
+        console.log(response);
         
         if (response.status === 401) {
+            console.log("try 2");
             const refreshToken = localStorage.getItem("refreshToken");
             if (refreshToken) {
                 // Afegeix el refresh token al header
@@ -26,6 +29,8 @@ export async function apiRequest({endpoint, options = {}}) {
                     }
                 })
                 if (refreshTokenRequest.ok) {
+                    console.log("try 3");
+
                     const retryOptions = {
                         ...finalOptions,
                         headers: {

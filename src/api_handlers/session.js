@@ -1,15 +1,6 @@
 import { API_URL } from "../api_handlers/consts";
 import { apiRequest } from "./api_handler";
 
-export async function logoutRequest() {
-    const response = await fetch(`${API_URL}/signout`, {
-        method: "PUT",
-        credentials: "include"
-    });
-    if (response.ok) location.reload();
-    // else -> pop up com que no s'ha pogut
-}
-
 export async function blankRequest() {
     try{
         const result = await apiRequest({endpoint: "/"});
@@ -21,6 +12,15 @@ export async function blankRequest() {
     catch {
         return false;
     }
+}
+
+export async function logoutRequest() {
+    const response = await fetch(`${API_URL}/signout`, {
+        method: "PUT",
+        credentials: "include"
+    });
+    if (response.ok) location.reload();
+    // else -> pop up com que no s'ha pogut
 }
 
 export async function sendAccessRequest(action, data) {

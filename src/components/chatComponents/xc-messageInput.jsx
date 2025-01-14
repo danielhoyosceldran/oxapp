@@ -1,10 +1,11 @@
 import { useRef, useEffect, useId } from "react";
-import { useTheme } from "../../theme/themeProvider";
-import PropTypes from "prop-types";
 import { useWebSockets } from "../../messages_connection/ws_access";
+import { useTheme } from "../../theme/themeProvider";
+import { useUser } from "../../user/userProvider";
+
+import PropTypes from "prop-types";
 
 import "../../styles/chat/chatComponents/s-xc-messageInput.css";
-import { useUser } from "../../user/userProvider";
 
 export default function XcMessageInput({
   sendIcon,
