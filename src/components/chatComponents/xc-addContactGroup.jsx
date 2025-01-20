@@ -14,7 +14,7 @@ export default function XcAddContactGroup({callback}) {
     await addContact(userId);
   };
 
-  var placeholderText = selected==="group"?" id":" username";
+  var placeholderText = selected==="group"?" group ID":" username";
 
   return (
     <div className="add-container g-flex g-flex-col g-horizontal-center-flex">
@@ -35,7 +35,7 @@ export default function XcAddContactGroup({callback}) {
         <input
           type="text"
           className="add-input"
-          placeholder={"Add " + selected + placeholderText}
+          placeholder={placeholderText}
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
         />

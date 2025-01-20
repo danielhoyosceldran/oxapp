@@ -7,7 +7,7 @@ import "../styles/chat/s-chat-container.css";
 import { useTheme } from "../theme/themeProvider.jsx";
 import { CIconButton, CTextButton } from "../components/c-CustomButtons.jsx";
 import { logoutRequest } from "../api_handlers/session.js";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useUser } from "../user/userProvider.jsx";
 
 import PropTypes from "prop-types";
@@ -16,7 +16,11 @@ import XcMessage from "../components/chatComponents/xc-message.jsx";
 import XcMessageInput from "../components/chatComponents/xc-messageInput";
 import default_profile_photo from "../assets/profile_photos/default.png";
 import XcAddContactGroup from "../components/chatComponents/xc-addContactGroup.jsx";
-import { useWebSockets, WebSocketsProvider } from "../messages_connection/ws_access.jsx";
+import {
+  useWebSockets,
+  WebSocketsProvider,
+} from "../messages_connection/ws_access.jsx";
+import { use } from "react";
 
 // Componente principal
 export default function Chat() {
@@ -45,6 +49,8 @@ export default function Chat() {
 export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
   const { contacts, handleGetContacts, username } = useUser();
   const [showNewDiv, setShowNewDiv] = useState(false);
+  const [contactFileter, setContactFilter] = useState("");
+  const contactFileterRef = useRef(null);
 
   function handleShowDiv() {
     setShowNewDiv(true);
@@ -53,6 +59,12 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
   function handleHideDiv() {
     setShowNewDiv(false);
   }
+
+  useEffect(() => {
+    contactFileterRef.current.oninput = () => {
+      setContactFilter(contactFileterRef.current.value);
+    };
+  }, []);
 
   return (
     <div className="x-menu-container" id="x-contactsBoxContainer-id">
@@ -67,6 +79,7 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
               type="text"
               className="x-menu-header-searchBar"
               placeholder="Search..."
+              ref={contactFileterRef}
             />
             <CIconButton
               onClick={() => {}}
@@ -91,16 +104,22 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
           {showNewDiv && <XcAddContactGroup callback={handleHideDiv} />}
         </header>
         <div className="x-menu-contacts g-vertical-scroll g-scroll-shadows g-styled-scrollbar g-flex g-flex-col g-flex-grow1">
-          {contacts.map((contact, index) => (
-            <XcContact
-              contactInformation={{
-                profilePhoto: undefined,
-                name: contact.name,
-                username: contact.username,
-              }}
-              key={index}
-            />
-          ))}
+          {contacts
+            .filter(
+              (contact) =>
+                contact.name.includes(contactFileter) ||
+                contact.username.includes(contactFileter)
+            )
+            .map((contact) => (
+              <XcContact
+                contactInformation={{
+                  profilePhoto: undefined,
+                  name: contact.name,
+                  username: contact.username,
+                }}
+                key={contact.username}
+              />
+            ))}
         </div>
         <footer className="x-menu-footer g-flex g-horizontal-spbtw-flex">
           <div className="x-menu-footer-profile g-flex g-vertical-center-flex g-horizontal-center-flex">
@@ -219,7 +238,9 @@ function ChatContainer({ icons }) {
             classes="x-closeChatWindow"
             icon={icons.cross}
             alt="icon cross"
-            onClick={() => {setContactSelected(undefined)}}
+            onClick={() => {
+              setContactSelected(undefined);
+            }}
           />
           <XcMessageInput
             sendIcon={icons.send}

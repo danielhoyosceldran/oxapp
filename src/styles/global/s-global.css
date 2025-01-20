@@ -211,7 +211,7 @@ a {
 }
 
 .g-background-pattern {
-    --s: 118px; /* control the size*/
+    --s: 100px; /* control the size*/
     --c1: var(--base-variant-1);
     --c2: transparent;
     
