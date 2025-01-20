@@ -10,8 +10,16 @@
     &:hover {
         background-color: var(--base-variant-1);
         .xc-contact-deleteButton {
-            display: block;
+            /*display: block;*/
         }
+    }
+}
+
+.xc-contact-selected {
+    background-color: var(--base-variant-1);
+
+    &:hover {
+        background-color: var(--base-variant-2);
     }
 }
 

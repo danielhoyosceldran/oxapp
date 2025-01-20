@@ -51,6 +51,7 @@ export function ChatMenu({ icons, profilePhoto, onLogout, onToggleTheme }) {
   const [showNewDiv, setShowNewDiv] = useState(false);
   const [contactFileter, setContactFilter] = useState("");
   const contactFileterRef = useRef(null);
+  const {contactSelected} = useUser();
 
   function handleShowDiv() {
     setShowNewDiv(true);

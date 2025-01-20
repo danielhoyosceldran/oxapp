@@ -4,7 +4,7 @@ import "../../styles/chat/chatComponents/s-xc-contactCard.css";
 import { useUser } from "../../user/userProvider";
 import { CIconButton } from "../c-CustomButtons";
 import { useTheme } from "../../theme/themeProvider";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function XcContact({
     contactInformation = {
@@ -19,13 +19,23 @@ export default function XcContact({
 }) {
     const {icons} = useTheme();
     const {setContactSelected} = useUser();
-    
+    const contactSelected = useUser().contactSelected;
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        if(contactSelected === contactInformation.username) {
+            containerRef.current.classList.add("xc-contact-selected");
+        } else {
+            containerRef.current.classList.remove("xc-contact-selected");
+        }
+    }, [contactSelected]);
+
     function updateSelectedContact() {
         setContactSelected(contactInformation.username);
     }
     return(
-        <div className="xc-contact-container g-flex g-vertical-center-flex g-flex-gap16 g-pointer" onClick={updateSelectedContact}>
-            <div className="g-flex g-horizontal-center-flex g-vertical-center-flex">
+        <div className="xc-contact-container g-flex g-vertical-center-flex g-flex-gap16 g-pointer" onClick={updateSelectedContact} ref={containerRef}>
+            <div className="g-flex g-horizontal-center-flex g-vertical-center-flex" >
                 <img
                     src={contactInformation.profilePhoto ? contactInformation.profilePhoto : default_profile_photo}
                     alt="oxapp default rpofile picture"
@@ -60,5 +70,5 @@ XcContact.propTypes = {
     lastMessage: PropTypes.shape({
         text: PropTypes.string,
         time: PropTypes.string
-    }),
+    })
 };
